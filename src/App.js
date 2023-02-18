@@ -1,23 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas, useThree, useFrame } from '@react-three/fiber';
+import { Suspense, useState } from 'react';
+import * as THREE from 'three';
+import "./styles.css";
+import { OrbitControls } from '@react-three/drei';
+import { Physics } from '@react-three/cannon';
+
+import { Can } from './components/Cans';
+import { Table } from './components/Table';
+import { Ball } from './components/Ball';
+
+
+//Dark Background
+const BlackBackground = () => {
+  const { scene, camera, size } = useThree()
+  useFrame(() => {
+    const color = 0x000000;
+    scene.background = new THREE.Color("black");
+    scene.fog = new THREE.Fog(color, 0, camera.far);
+  });
+
+  return null
+}
 
 function App() {
+  const [cans, setCans] = useState([
+    { position: [0.1, 0.67, 0], rotation: [0, 0, 0] },
+    { position: [0.2, 0.67, 0], rotation: [0, 0, 0] }
+  ]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Canvas>
+        <BlackBackground />
+        <Physics>
+          <Suspense fallback={null}>
+            <>
+              {cans.map((box, index) => (
+                <Can position={box.position} />
+              ))}
+            </>
+            <Table />
+            <Ball />
+          </Suspense>
+        </Physics>
+        <OrbitControls />
+      </Canvas>
     </div>
   );
 }
