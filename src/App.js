@@ -7,15 +7,17 @@ import { Physics } from '@react-three/cannon';
 
 import { Can } from './components/Cans';
 import { Table } from './components/Table';
-import { Ball } from './components/Ball';
+// import { Ball } from './components/Ball';
+import { BallCanInteraction } from './components/BallCanInteraction';
 
 
 //Dark Background
 const BlackBackground = () => {
   const { scene, camera, size } = useThree()
   useFrame(() => {
-    const color = 0x000000;
-    scene.background = new THREE.Color("black");
+    const color = 0x270722;
+    scene.background = new THREE.Color(color);
+
     scene.fog = new THREE.Fog(color, 0, camera.far);
   });
 
@@ -23,10 +25,8 @@ const BlackBackground = () => {
 }
 
 function App() {
-  const [cans, setCans] = useState([
-    { position: [0.1, 0.67, 0], rotation: [0, 0, 0] },
-    { position: [0.2, 0.67, 0], rotation: [0, 0, 0] }
-  ]);
+
+
 
 
   return (
@@ -35,13 +35,8 @@ function App() {
         <BlackBackground />
         <Physics>
           <Suspense fallback={null}>
-            <>
-              {cans.map((box, index) => (
-                <Can position={box.position} />
-              ))}
-            </>
+            <BallCanInteraction />
             <Table />
-            <Ball />
           </Suspense>
         </Physics>
         <OrbitControls />
