@@ -4,12 +4,13 @@ import { useCylinder } from '@react-three/cannon';
 
 
 export function Can() {
-    const { nodes, materials } = useLoader(GLTFLoader, './simple_cola_can/scene.gltf')
+    const { nodes, materials } = useLoader(GLTFLoader, './simple_cola_can/scene.gltf');
 
     //Cans reference
     const [canReference, canApi] = useCylinder(() => ({
         mass: 1,
         type: "Static",
+        onCollide: () => { console.log("kuch to hua hai"); }
     }));
 
     /*  Can Design
@@ -20,7 +21,6 @@ export function Can() {
          ******                         }
         ******** } -> horizontal_cans   }
     */
-
 
     //For creating the Cans tower
     //point where the first can is places
@@ -38,8 +38,7 @@ export function Can() {
 
     //cans length of the bottom line
     var count = 5;
-    var getNoOfCans = 0;
-
+    var uniqueId = 0;
 
     for (let i = count; i > 0; i--) {
         var moving_point = start_point;
@@ -48,6 +47,7 @@ export function Can() {
                 <mesh ref={canReference} geometry={nodes.Object_2.geometry}
                     material={materials.None} position={[moving_point, start_height, 0]}
                     rotation={[4.7, 0, 0]} scale={0.1}
+                    key={uniqueId++}
                 />
             )
             moving_point += difference;
