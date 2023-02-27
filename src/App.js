@@ -26,9 +26,6 @@ const BlackBackground = () => {
 
 function App() {
 
-
-
-
   return (
     <div className="App">
       <Canvas>
