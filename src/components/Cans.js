@@ -4,14 +4,19 @@ import { useCylinder } from '@react-three/cannon';
 
 
 export function Can() {
-    const { nodes, materials } = useLoader(GLTFLoader, './simple_cola_can/scene.gltf');
+    const { nodes, materials } = useLoader(GLTFLoader, './simple_cola_can/scene.gltf')
 
     //Cans reference
     const [canReference, canApi] = useCylinder(() => ({
         mass: 1,
         type: "Static",
-        onCollide: () => { console.log("kuch to hua hai"); }
+
     }));
+
+    useFrame(() => {
+
+
+    })
 
     /*  Can Design
     
@@ -31,7 +36,6 @@ export function Can() {
     var start_height = 0.67;
     //vertical height (how up a can should be from the first line) of a can
     const height_difference = 0.32;
-
 
     var horizontal_cans = [];
     var vertical_cans = [];
@@ -59,7 +63,7 @@ export function Can() {
     }
 
     return (
-        <mesh {...[canReference, canApi]}>
+        <mesh >
             {vertical_cans}
         </mesh>
     );

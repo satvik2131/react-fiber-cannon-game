@@ -22,13 +22,13 @@ export function Ball() {
         const y = (mouse.y * viewport.height) / 2;
 
         //setting to the api
-        sphereApi.position.set(x, y, 0);
-        sphereApi.rotation.set(-y, x, 0)
+        sphereApi.position.set(x, 0, 3);
+        // sphereApi.rotation.set(-y, x, 0)
 
 
         //setting to the ref
-        sphereRef.current.position.set(x, y, 0);
-        sphereRef.current.rotation.set(-y, x, 0);
+        sphereRef.current.position.set(x, 0, 0);
+        // sphereRef.current.rotation.set(-y, x, 0);
 
         // console.log(sphereRef.current.position);
     });
