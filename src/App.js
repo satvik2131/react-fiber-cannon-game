@@ -3,34 +3,40 @@ import { Suspense, useState } from 'react';
 import * as THREE from 'three';
 import "./styles.css";
 import { OrbitControls } from '@react-three/drei';
-import { Physics } from '@react-three/cannon';
-
-import { Can } from './components/Cans';
+import { Physics, usePlane } from '@react-three/cannon';
 import { Table } from './components/Table';
-// import { Ball } from './components/Ball';
 import { BallCanInteraction } from './components/BallCanInteraction';
 
 
 //Dark Background
-const BlackBackground = () => {
-  const { scene, camera, size } = useThree()
+const Background = () => {
+  const { scene, camera } = useThree()
+
   useFrame(() => {
     const color = 0x270722;
     scene.background = new THREE.Color(color);
-
     scene.fog = new THREE.Fog(color, 0, camera.far);
   });
 
   return null
 }
 
+// const Plane = () => {
+//   usePlane(() => ({
+//     mass: 10,
+//     position: [0, 0, 0],
+//     rotation: [-Math.PI / 2, 0, 0],
+//     type: "Static"
+//   }));
+// }
+
 function App() {
 
   return (
     <div className="App">
       <Canvas>
-        <BlackBackground />
-        <Physics>
+        <Background />
+        <Physics gravity={[0, -9.81, 0]}>
           <Suspense fallback={null}>
             <BallCanInteraction />
             <Table />
