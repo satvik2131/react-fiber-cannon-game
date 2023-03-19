@@ -10,7 +10,8 @@ export function Ball() {
     //Ball reference
     const [sphereRef, sphereApi] = useSphere(() => ({
         mass: 1,
-        type: "Static"
+        type: "Dynamic",
+        args: [0.1, 0.1, 0.1]
     }));
 
 

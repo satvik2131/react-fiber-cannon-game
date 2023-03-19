@@ -1,10 +1,9 @@
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import * as THREE from 'three';
 import "./styles.css";
 import { OrbitControls } from '@react-three/drei';
-import { Physics, usePlane } from '@react-three/cannon';
-import { Table } from './components/Table';
+import { Physics, Debug } from '@react-three/cannon';
 import { BallCanInteraction } from './components/BallCanInteraction';
 
 
@@ -21,14 +20,6 @@ const Background = () => {
   return null
 }
 
-// const Plane = () => {
-//   usePlane(() => ({
-//     mass: 10,
-//     position: [0, 0, 0],
-//     rotation: [-Math.PI / 2, 0, 0],
-//     type: "Static"
-//   }));
-// }
 
 function App() {
 
@@ -37,10 +28,11 @@ function App() {
       <Canvas>
         <Background />
         <Physics gravity={[0, -9.81, 0]}>
-          <Suspense fallback={null}>
-            <BallCanInteraction />
-            <Table />
-          </Suspense>
+          <Debug>
+            <Suspense fallback={null}>
+              <BallCanInteraction />
+            </Suspense>
+          </Debug>
         </Physics>
         <OrbitControls />
       </Canvas>
