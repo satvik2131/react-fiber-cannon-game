@@ -19,16 +19,16 @@ export function Ball() {
     useFrame(({ mouse }) => {
         ////Ball moving
         // Moves the ball with cursor
-        const x = (mouse.x * viewport.width) / 2;
-        const y = (mouse.y * viewport.height) / 2;
+        // const x = (mouse.x * viewport.width) / 2;
+        // const y = (mouse.y * viewport.height) / 2;
 
         //setting to the api
-        sphereApi.position.set(x, 0, 3);
+        sphereApi.position.set(0, 0, 3);
         // sphereApi.rotation.set(-y, x, 0)
 
 
         //setting to the ref
-        sphereRef.current.position.set(x, 0, 0);
+        sphereRef.current.position.set(0, 0, 0);
         // sphereRef.current.rotation.set(-y, x, 0);
 
         // console.log(sphereRef.current.position);

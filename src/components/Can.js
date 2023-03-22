@@ -1,37 +1,30 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { useCylinder } from "@react-three/cannon";
-import { useAnimations } from "@react-three/drei";
 
 
 export function Can(canposition, unique) {
-    const { nodes, materials, animations } = useGLTF("/simple_cola_can.glb");
-    const { actions } = useAnimations(animations);
-
-    console.log(canposition);
+    // const { nodes, materials } = useGLTF("/simple_cola_can.glb");
 
     const [canReference, canApi] = useCylinder(() => ({
         mass: 1,
-        position: canposition.position,
-        args: [0.1, 0.1, 0.3]
+        args: [1, 1, 2],
+        position: [0, 2, 0],
+        // rotation: [0, -Math.PI / 2, 0]
     }));
+
 
     return (
         <group key={unique} dispose={null}>
-            <group scale={0.1}
-                // position={canposition.position}
+            <group
                 ref={canReference}
-
             >
                 <mesh
                     castShadow
                     receiveShadow
-                    // geometry={nodes.Object_2.geometry}
-                    // material={materials.None}
-                    onClick={(e) => { }}
-                    position={canposition.position}
-                    rotation={[Math.PI / 2, 0, 0]}
-
+                // geometry={nodes.Object_2.geometry}
+                // material={materials.None}
+                // rotation={[Math.PI / 2, 0, 0]}
                 />
             </group>
         </group>

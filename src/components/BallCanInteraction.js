@@ -4,6 +4,7 @@ import { usePlane } from '@react-three/cannon';
 import { Ball } from './Ball';
 import { Table } from './Table';
 import * as THREE from 'three';
+import { Can } from './Can';
 
 export function BallCanInteraction() {
     const ballRef = Ball().ref;
@@ -54,7 +55,8 @@ export function BallCanInteraction() {
             <ambientLight />
             {/* <Table /> */}
             <Plane />
-            <Cans />
+            {/* <Cans /> */}
+            <Can unique={1} />
             {/* <Ball /> */}
         </>
     );
