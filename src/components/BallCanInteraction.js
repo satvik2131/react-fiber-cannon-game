@@ -1,57 +1,63 @@
-import { useSphere, useCylinder, useRaycastAny } from '@react-three/cannon';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useState, useRef } from 'react';
-
-import { Can } from './Cans';
+import { Cans } from './Cans';
+import { usePlane } from '@react-three/cannon';
 import { Ball } from './Ball';
-
+import { Table } from './Table';
+import * as THREE from 'three';
+import { Can } from './Can';
 
 export function BallCanInteraction() {
-    const testRef = useRef();
-    const { camera, raycaster } = useThree();
+    const ballRef = Ball().ref;
+    const { raycaster, scene } = useThree();
 
-    // Define a callback function to be executed when the raycasting intersects with an object
-    const onIntersect = (intersects) => {
-        console.log(`Intersects: ${intersects.length} objects`)
-    }
+    //Intersecting ball with can
+    useFrame(() => {
+        //Raycasting approach
+        var ballPosition = ballRef.current.position;
+        var ballDirection = new THREE.Vector3(0, 0, 1);
+        raycaster.set(ballPosition, ballDirection);
 
-    //Ball reference
-    const [sphereRef, api] = useSphere(() => ({
-        mass: 1,
-        position: [0, 0, 4],
-        type: "Static",
-    }));
+        //Detects intersection between can and ball
+        const intersects = raycaster.intersectObjects(scene.children);
+        if (intersects.length > 0) {
+            var instersectingObj = intersects[0];
+            var distance = instersectingObj.distance;
 
-    //Cans reference
-    const [canReference, canApi] = useCylinder(() => ({
-        position: [0.1, 0.67, 0],
-        mass: 1,
-    }));
-
-
-    useFrame(({ pointer, mouse }) => {
-        pointer.x = (mouse.x / window.innerWidth) * 2 - 1;
-        pointer.y = - (mouse.y / window.innerHeight) * 2 + 1;
-
-        // var x = sphereRef.current.position.x;
-        // var y = sphereRef.current.position.y
-        // raycaster.setFromCamera({ x: x, y: y }, camera)
-        // raycaster.ray.direction.normalize();
-
-        // // Perform raycasting and call the onIntersect callback with the intersected objects
-        const intersects = raycaster.intersectObjects(testRef)
-        // console.log(intersects.length);
-
+            if (distance < 1) {
+                var api = instersectingObj.object.update;
+                if (api) {
+                    // console.log(api);
+                    // const force = [0, 0, -100]
+                    // api.position.set(2, 1, 1);
+                }
+                //ray got deviated (intersection point)
+                // instersectingObj.object.position.y += 1
+            }
+        }
     })
 
+    function Plane() {
+        const [ref] = usePlane(() => ({
+            position: [0, 0, 0],
+            rotation: [-Math.PI / 2, 0, 0],
+        }))
+        return (
+            <mesh ref={ref} >
+                <meshStandardMaterial attach="material" color="violet" />
+                <planeGeometry args={[10, 10]} />
+            </mesh>
+        )
+    }
 
     return (
         <>
-            <Ball reference={sphereRef} api={api} name="ball" />
-            <Can reference={canReference} name="can" />
-            <mesh ref={testRef} position={[3, 1, 0]}>
-                <sphereBufferGeometry />
-            </mesh>
+            <pointLight />
+            <ambientLight />
+            {/* <Table /> */}
+            <Plane />
+            {/* <Cans /> */}
+            <Can unique={1} />
+            {/* <Ball /> */}
         </>
     );
 }

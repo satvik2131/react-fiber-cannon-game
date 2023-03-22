@@ -1,37 +1,46 @@
-import { useLoader, useFrame } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { useCylinder } from '@react-three/cannon';
+import { Can } from './Can';
 
 
-export function Can({ reference, position }) {
-    const { nodes, materials } = useLoader(GLTFLoader, './simple_cola_can/scene.gltf')
+export function Cans() {
+
+    /*  Can Design
+            *                           }
+           **                           }                
+          ****                          } --> vertical_cans
+         ******                         }
+        ******** } -> horizontal_cans   }
+    */
 
     //For creating the Cans tower
-    var start_point = -0.5;
-    const difference = 0.2;
-    var start_height = 0.67;
+    //first can starting point
+    var start_point = -0.4;
+    //horizontal horizontal_difference 
+    const horizontal_difference = 2;
+    //height of the first can
+    var start_height = 0.1;
+    //vertical height (how up a can should be from the first line) of a can
+    const height_difference = 4;
 
-    var horizontal_cans = [];
-    var vertical_cans = [];
+    var canpositions = [];
 
+    //cans length of the bottom line
     var count = 5;
+    var uniqueKey = 0;
 
     for (let i = count; i > 0; i--) {
         var moving_point = start_point;
+
         for (let j = 0; j < i; j++) {
-            horizontal_cans.push(
-                <mesh ref={reference} geometry={nodes.Object_2.geometry}
-                    material={materials.None} position={[moving_point, start_height, 0]}
-                    rotation={[4.7, 0, 0]} scale={0.1}
-                />
-            )
-            moving_point += difference;
+            // const newCan = { position: [moving_point, start_height, 0] }
+            var position = [moving_point, start_height, 0];
+            canpositions.push(<Can position={position} unique={uniqueKey++} key={uniqueKey++} />);
+            moving_point += horizontal_difference;
         }
 
-        vertical_cans.push(horizontal_cans);
-        start_height += 0.32;
-        start_point = (start_point + (start_point + difference)) / 2
+        start_height += height_difference;
+        //updating the horizontal start point for the next line creation upward
+        start_point = (start_point + (start_point + horizontal_difference)) / 2
     }
 
-    return vertical_cans;
+    return canpositions;
 }
