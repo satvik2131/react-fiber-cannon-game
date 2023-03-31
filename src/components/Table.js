@@ -8,15 +8,15 @@ export function Table() {
         mass: 10,
         position: [0, 0, 0],
         // rotation: [-Math.PI / 2, -Math.PI / 2, -Math.PI / 2],
-        type: "Static"
+        type: "Dynamic"
     }));
 
     const gltf = useLoader(GLTFLoader, './wooden_table/scene.gltf')
     return (
         <mesh ref={ref} update={tableApi} >
             <primitive object={gltf.scene} />
-            <ambientLight intensity={0.5} />
-            <directionalLight color="green" />
+            {/* <ambientLight intensity={0.5} /> */}
+            {/* <directionalLight color="green" /> */}
         </mesh>
     )
 }

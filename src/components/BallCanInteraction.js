@@ -1,6 +1,6 @@
 import { useFrame, useThree } from '@react-three/fiber';
 import { Cans } from './Cans';
-import { usePlane } from '@react-three/cannon';
+import { usePlane, useBox, useCylinder, useSphere } from '@react-three/cannon';
 import { Ball } from './Ball';
 import { Table } from './Table';
 import * as THREE from 'three';
@@ -38,8 +38,9 @@ export function BallCanInteraction() {
 
     function Plane() {
         const [ref] = usePlane(() => ({
-            position: [0, 0, 0],
+            mass: 0,
             rotation: [-Math.PI / 2, 0, 0],
+            type: "Static",
         }))
         return (
             <mesh ref={ref} >
@@ -49,14 +50,15 @@ export function BallCanInteraction() {
         )
     }
 
+
     return (
         <>
             <pointLight />
             <ambientLight />
             {/* <Table /> */}
             <Plane />
-            {/* <Cans /> */}
-            <Can unique={1} />
+            <Cans />
+            {/* <Can unique={1} /> */}
             {/* <Ball /> */}
         </>
     );

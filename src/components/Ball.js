@@ -11,6 +11,7 @@ export function Ball() {
     const [sphereRef, sphereApi] = useSphere(() => ({
         mass: 1,
         type: "Dynamic",
+        position: [0, 0, 3],
         args: [0.1, 0.1, 0.1]
     }));
 
@@ -19,19 +20,18 @@ export function Ball() {
     useFrame(({ mouse }) => {
         ////Ball moving
         // Moves the ball with cursor
-        // const x = (mouse.x * viewport.width) / 2;
-        // const y = (mouse.y * viewport.height) / 2;
+        const x = (mouse.x * viewport.width) / 2;
+        const y = (mouse.y * viewport.height) / 2;
 
         //setting to the api
-        sphereApi.position.set(0, 0, 3);
-        // sphereApi.rotation.set(-y, x, 0)
+        sphereApi.position.set(0, 0, x);
+        sphereApi.rotation.set(-y, x, 0)
 
 
         //setting to the ref
-        sphereRef.current.position.set(0, 0, 0);
-        // sphereRef.current.rotation.set(-y, x, 0);
+        sphereRef.current.position.set(0, 0, x);
+        sphereRef.current.rotation.set(-y, x, 0);
 
-        // console.log(sphereRef.current.position);
     });
 
     const gltf = useLoader(GLTFLoader, './tennis_ball/scene.gltf');

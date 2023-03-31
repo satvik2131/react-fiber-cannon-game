@@ -1,4 +1,6 @@
+import { useFrame } from '@react-three/fiber';
 import { Can } from './Can';
+import { usePlane } from '@react-three/cannon';
 
 
 export function Cans() {
@@ -15,11 +17,11 @@ export function Cans() {
     //first can starting point
     var start_point = -0.4;
     //horizontal horizontal_difference 
-    const horizontal_difference = 2;
+    const horizontal_difference = 0.25;
     //height of the first can
-    var start_height = 0.1;
+    var start_height = 0.16;
     //vertical height (how up a can should be from the first line) of a can
-    const height_difference = 4;
+    const height_difference = 0.3;
 
     var canpositions = [];
 
@@ -27,13 +29,17 @@ export function Cans() {
     var count = 5;
     var uniqueKey = 0;
 
+
+
     for (let i = count; i > 0; i--) {
         var moving_point = start_point;
 
         for (let j = 0; j < i; j++) {
             // const newCan = { position: [moving_point, start_height, 0] }
             var position = [moving_point, start_height, 0];
-            canpositions.push(<Can position={position} unique={uniqueKey++} key={uniqueKey++} />);
+            canpositions.push(
+                <Can position={position} unique={uniqueKey++} key={uniqueKey++} />,
+            );
             moving_point += horizontal_difference;
         }
 
@@ -44,3 +50,6 @@ export function Cans() {
 
     return canpositions;
 }
+
+
+
