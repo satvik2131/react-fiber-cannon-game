@@ -7,29 +7,24 @@ import { useFrame } from "@react-three/fiber";
 export function Can(canposition, unique) {
     const { nodes, materials } = useGLTF("/simple_cola_can.glb");
     const canState = useRef(false);
-    const position = useRef([0, 0, 0]);
 
     const [canReference, canApi] = useCylinder(() => ({
         mass: 1,
         args: [0.1, 0.1, 0.3],
+        allowSleep: true,
         position: canposition.position,
         rotation: [0, -Math.PI / 2, 0],
-        type: "Dynamic"
-
+        type: "Dynamic",
+        sleepSpeedLimit: 1
     }));
 
     useFrame(() => {
-        var position = canposition.position;
-        if (!canState.current) {
-            canApi.sleep();
-        } else {
-            // canApi.position.set(position.current);
-        }
+        // if (!canState.current) {
+        //     canApi.sleep();
+        // } else {
+        // }
     })
-    // useEffect(() => {
-    //     const subscribe = canApi.position.subscribe((p) => (canReference.current.position = canposition.position));
-    //     return subscribe;
-    // }, []);
+
 
 
     return (
@@ -42,6 +37,9 @@ export function Can(canposition, unique) {
                     // canReference.current.position.set(2, 1, 0);
                     canApi.wakeUp();
                 }}
+
+                api={canApi}
+                canstate={canState}
 
             >
                 <mesh

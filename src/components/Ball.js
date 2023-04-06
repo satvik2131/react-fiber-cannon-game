@@ -11,8 +11,16 @@ export function Ball() {
     const [sphereRef, sphereApi] = useSphere(() => ({
         mass: 1,
         type: "Dynamic",
-        position: [0, 0, 3],
-        args: [0.1, 0.1, 0.1]
+        position: [0, 10, -6],
+        args: [0.1, 0.1, 0.1],
+        onCollide: (d) => {
+            // var api = d.body.api;
+            // var canstate = d.body.canstate;
+            // if (api) {
+            //     api.wakeUp();
+            //     canstate.current = false;
+            // }
+        }
     }));
 
 

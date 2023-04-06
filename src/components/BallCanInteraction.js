@@ -5,6 +5,7 @@ import { Ball } from './Ball';
 import { Table } from './Table';
 import * as THREE from 'three';
 import { Can } from './Can';
+import { use } from '@react-three/cannon'
 
 export function BallCanInteraction() {
     const ballRef = Ball().ref;
@@ -24,12 +25,13 @@ export function BallCanInteraction() {
             var distance = instersectingObj.distance;
 
             if (distance < 1) {
-                var api = instersectingObj.object.update;
-                if (api) {
-                    // console.log(api);
-                    // const force = [0, 0, -100]
-                    // api.position.set(2, 1, 1);
-                }
+                // var api = instersectingObj.object.update;
+                // console.log(instersectingObj);
+                // if (api) {
+                //     // console.log(api);
+                //     // const force = [0, 0, -100]
+                //     // api.position.set(2, 1, 1);
+                // }
                 //ray got deviated (intersection point)
                 // instersectingObj.object.position.y += 1
             }

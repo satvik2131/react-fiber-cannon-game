@@ -29,7 +29,7 @@ function App() {
       //  camera={{ position: [3, 10, 30], rotation: [-Math.PI / 2, 0, 0] }}
       >
         <Background />
-        <Physics gravity={[0, -9.81, 0]}>
+        <Physics gravity={[0, -9.81, 0]} allowSleep={true}>
           <Debug>
             <Suspense fallback={null}>
               <BallCanInteraction />
