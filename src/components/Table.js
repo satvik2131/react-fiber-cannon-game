@@ -6,8 +6,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 export function Table() {
     const [ref, tableApi] = useBox(() => ({
         mass: 10,
-        position: [0, 0, 0],
-        // rotation: [-Math.PI / 2, -Math.PI / 2, -Math.PI / 2],
+        args: [1, 1, 2],
+        position: [0, 0.49, 0],
+        rotation: [-Math.PI / 2, -Math.PI / 2, -Math.PI / 2],
         type: "Static"
     }));
 
@@ -15,8 +16,8 @@ export function Table() {
     return (
         <mesh ref={ref} update={tableApi} >
             <primitive object={gltf.scene} />
-            <ambientLight intensity={0.5} />
-            <directionalLight color="green" />
+            {/* <ambientLight intensity={0.5} /> */}
+            {/* <directionalLight color="green" /> */}
         </mesh>
     )
 }
