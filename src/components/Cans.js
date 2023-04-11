@@ -19,7 +19,7 @@ export function Cans() {
     //horizontal horizontal_difference 
     const horizontal_difference = 0.25;
     //height of the first can
-    var start_height = 0.16;
+    var start_height = 1.2;
     //vertical height (how up a can should be from the first line) of a can
     const height_difference = 0.3;
 
