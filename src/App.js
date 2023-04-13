@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import "./styles.css";
 import { OrbitControls } from '@react-three/drei';
 import { Physics, Debug } from '@react-three/cannon';
-import { BallCanInteraction } from './components/BallCanInteraction';
+import { Scene } from './components/BallCanInteraction';
 
 
 //Dark Background
@@ -32,7 +32,7 @@ function App() {
         <Physics gravity={[0, -9.81, 0]} allowSleep={true}>
           <Debug>
             <Suspense fallback={null}>
-              <BallCanInteraction />
+              <Scene />
             </Suspense>
           </Debug>
         </Physics>
