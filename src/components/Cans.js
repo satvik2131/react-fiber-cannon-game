@@ -30,12 +30,10 @@ export function Cans() {
     var uniqueKey = 0;
 
 
-
     for (let i = count; i > 0; i--) {
         var moving_point = start_point;
 
         for (let j = 0; j < i; j++) {
-            // const newCan = { position: [moving_point, start_height, 0] }
             var position = [moving_point, start_height, 0];
             canpositions.push(
                 <Can position={position} unique={uniqueKey++} key={uniqueKey++} />,

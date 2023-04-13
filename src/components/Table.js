@@ -16,8 +16,7 @@ export function Table() {
     return (
         <mesh ref={ref} update={tableApi} >
             <primitive object={gltf.scene} />
-            {/* <ambientLight intensity={0.5} /> */}
-            {/* <directionalLight color="green" /> */}
+
         </mesh>
     )
 }
