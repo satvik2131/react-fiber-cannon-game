@@ -36,7 +36,7 @@ function App() {
             </Suspense>
           </Debug>
         </Physics>
-        <OrbitControls />
+        {/* <OrbitControls /> */}
       </Canvas>
     </div>
   );
