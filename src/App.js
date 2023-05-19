@@ -4,21 +4,7 @@ import * as THREE from 'three';
 import "./styles.css";
 import { OrbitControls } from '@react-three/drei';
 import { Physics, Debug } from '@react-three/cannon';
-import { Scene } from './components/BallCanInteraction';
-
-
-//Dark Background
-const Background = () => {
-  const { scene, camera } = useThree()
-
-  useFrame(() => {
-    const color = 0x270722;
-    scene.background = new THREE.Color(color);
-    scene.fog = new THREE.Fog(color, 0, camera.far);
-  });
-
-  return null
-}
+import { Scene } from './components/Scene';
 
 
 function App() {
@@ -26,9 +12,9 @@ function App() {
   return (
     <div className="App">
       <Canvas
-        camera={{ position: [0, 1, 6], }}
+        camera={{ position: [0, 1, 4], }}
       >
-        <Background />
+        {/* <Background /> */}
         <Physics gravity={[0, -9.81, 0]} allowSleep={true}>
           <Debug>
             <Suspense fallback={null}>
@@ -36,7 +22,7 @@ function App() {
             </Suspense>
           </Debug>
         </Physics>
-        {/* <OrbitControls /> */}
+        <OrbitControls />
       </Canvas>
     </div>
   );

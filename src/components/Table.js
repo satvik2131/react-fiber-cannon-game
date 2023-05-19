@@ -12,11 +12,10 @@ export function Table() {
         type: "Static"
     }));
 
-    const gltf = useLoader(GLTFLoader, './wooden_table/scene.gltf')
+    const gltf = useLoader(GLTFLoader, './models_3d/wooden_table/scene.gltf')
     return (
         <mesh ref={ref} update={tableApi} >
             <primitive object={gltf.scene} />
-
         </mesh>
     )
 }
