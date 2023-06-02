@@ -38,4 +38,4 @@ export function Can(canposition, unique) {
     );
 }
 
-useGLTF.preload("/simple_cola_can.glb");
+useGLTF.preload("/models_3d/simple_cola_can.glb");

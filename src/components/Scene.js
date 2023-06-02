@@ -1,10 +1,10 @@
 import { Cans } from './Cans/Cans';
 import { usePlane } from '@react-three/cannon';
-import { Ball } from './Ball';
+import { Ball } from './Balls/Ball';
 import { Table } from './Table';
 import { Wall } from './Wall';
 import { useTexture } from '@react-three/drei';
-import { BallTable } from './BallTable';
+import { BallTable } from './Balls/BallTable';
 
 
 export function Scene() {
@@ -23,7 +23,7 @@ export function Scene() {
             mass: 0,
             rotation: [-Math.PI / 2, 0, 0],
             type: "Dynamic",
-        }))
+        }));
 
         return (
             <mesh ref={ref} >
