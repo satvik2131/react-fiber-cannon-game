@@ -1,78 +1,90 @@
 import { useSphere } from "@react-three/cannon";
-import { useState } from "react";
 import { useDrag, useGesture } from "@use-gesture/react";
-import { useGLTF } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
+import { Html, useGLTF } from "@react-three/drei";
+import { useEffect, useRef, useState } from "react";
+import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 
 export function Ball({ position }) {
-  const [holdStatus, setHoldStatus] = useState(true);
-
+  const [moveBall, setMoveBall] = useState(false);
+  const { viewport } = useThree();
   // //Ball reference
   const [sphereRef, sphereApi] = useSphere(() => ({
     mass: 1,
     type: "Dynamic",
     position: position,
     args: [0.18, 0.18, 0.18],
-    sleepSpeedLimit: 1,
+    // sleepSpeedLimit: 1,
   }));
 
-  // const bind = useDrag(({ offset: [x, y], down }) => {
-  //   if (down) {
-  //     console.log(x, y);
-  //     const z = -(-y + 6);
-  //     sphereApi.applyForce([x - 2, -y, z], [0, 0, 0]);
-  //   } else {
-  //     sphereApi.velocity.set(0, 0, 0);
-  //   }
-  // });
+  useFrame(({}) => {});
 
-  const bindGestures = useGesture(
-    {
-      onDragStart: () => {
-        console.log("Hold Starts");
-        setHoldStatus(false);
-        console.log("1");
-      },
+  const bind = useDrag(({ offset: [xAxis, yAxis], down }) => {
+    if (down) {
+      // const x = xAxis - 2;
+      const x = ((xAxis / 100) * viewport.width) / 2;
 
-      onDrag: ({ movement: [x, y], dragging, down }) => {
-        if (holdStatus === true && dragging === true) {
-          console.log(x, y);
-          console.log("2");
-        }
-      },
-
-      onDragEnd: () => {
-        // Handle hold end here
-        console.log("Hold End");
-        console.log("3");
-        setHoldStatus(true);
-      },
-    },
-    {
-      drag: {
-        delay: 500, // Adjust the hold delay as needed
-        filterTaps: true, // Prevent swipe trigger on taps
-      },
+      const z = -(-yAxis + 6);
+      // console.log(x, yAxis);
+    } else {
+      sphereApi.velocity.set(0, 0, 0);
+      sphereApi.angularVelocity.set(0, 0, 0);
     }
-  );
+  });
+
+  // const bindGestures = useGesture(
+  //   {
+  //     onDragStart: () => {
+  //       console.log("Hold Starts");
+  //       setMoveBall(true);
+  //     },
+
+  //     onDrag: ({ offset: [xAxis, yAxis], down }) => {
+  //       const x = ((xAxis / 100) * viewport.width) / 2;
+  //       const y = (-(yAxis / 100) * viewport.height) / 2;
+
+  //       console.log(x, y);
+
+  //       sphereApi.applyImpulse([x, y, y - 6], [0, 0, 0]);
+  //     },
+
+  //     onDragEnd: () => {
+  //       // Handle hold end here
+  //       console.log("Hold End");
+  //       setMoveBall(false);
+  //     },
+  //   },
+  //   {
+  //     drag: {
+  //       delay: 500, // Adjust the hold delay as needed
+  //       filterTaps: true, // Prevent swipe trigger on taps
+  //     },
+  //   }
+  // );
 
   const { nodes, materials } = useGLTF("/models_3d/ball.glb");
   return (
-    <mesh ref={sphereRef} {...bindGestures()}>
-      <group dispose={null} scale={3.0}>
-        <group rotation={[-Math.PI / 2, 0, 0]} scale={0.07}>
-          <group rotation={[Math.PI / 2, 0, 0]}>
-            <mesh
-              geometry={nodes.defaultMaterial.geometry}
-              material={materials.lambert3}
-            />
-            <mesh
-              geometry={nodes.defaultMaterial_1.geometry}
-              material={materials.lambert1}
-            />
+    <>
+      <Html>
+        <ReactScrollWheelHandler upHandler={(e) => console.log("scroll up")} />
+      </Html>
+      <mesh ref={sphereRef} {...bind()}>
+        <group dispose={null} scale={3.0}>
+          <group rotation={[-Math.PI / 2, 0, 0]} scale={0.07}>
+            <group rotation={[Math.PI / 2, 0, 0]}>
+              <mesh
+                geometry={nodes.defaultMaterial.geometry}
+                material={materials.lambert3}
+              />
+              <mesh
+                geometry={nodes.defaultMaterial_1.geometry}
+                material={materials.lambert1}
+              />
+            </group>
           </group>
         </group>
-      </group>
-    </mesh>
+      </mesh>
+    </>
   );
 
   useGLTF.preload("/models_3d/scene-transformed.glb");

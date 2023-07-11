@@ -5,9 +5,9 @@ import { BoundingWall } from "./BoundingWall";
 export function BallTable() {
   const [tableRef, tableApi] = useBox(() => ({
     mass: 10,
-    position: [0, 0.6, 3],
+    position: [0, 0.25, 3],
     args: [3, 0.5, 1],
-    type: "Dynamic",
+    type: "Static",
   }));
 
   return (
