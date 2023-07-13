@@ -6,13 +6,17 @@ import { useThree } from "@react-three/fiber";
 export function Balls({ count }) {
   const groupRef = useRef();
   const objects = [];
-  var horizontalMovement = 0 - (count - 3.5);
+  var horizontalDistance = 0 - (count - 3.5);
+  const zAxisDistance = 3;
 
   for (let i = 0; i < count; i++) {
     objects.push(
-      <Ball key={i} position={[horizontalMovement, i + 2, 3]}></Ball>
+      <Ball
+        key={i}
+        position={[horizontalDistance, i + 2, zAxisDistance]}
+      ></Ball>
     );
-    horizontalMovement = horizontalMovement + 0.5;
+    horizontalDistance = horizontalDistance + 0.5;
   }
 
   return <group>{objects}</group>;
