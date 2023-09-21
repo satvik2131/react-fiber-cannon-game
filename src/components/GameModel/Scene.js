@@ -1,6 +1,5 @@
 import { Cans } from "./Cans/Cans";
 import { usePlane } from "@react-three/cannon";
-import { Ball } from "./Balls/Ball";
 import { Table } from "./Table";
 import { Wall } from "./Wall";
 import { OrbitControls, useTexture } from "@react-three/drei";
@@ -34,9 +33,7 @@ export function Scene() {
 
   return (
     <>
-      <pointLight />
-      <ambientLight />
-      {/* <OrbitControls /> */}
+      <OrbitControls />
       <Wall position={[0, 5, -4]} rotation={[0, 0, 0]} />
       <Wall position={[5, 5, 0]} rotation={[0, -Math.PI / 2, 0]} />
       <Wall position={[-5, 5, 0]} rotation={[0, Math.PI / 2, 0]} />
@@ -45,7 +42,6 @@ export function Scene() {
       <BallTable />
       <Ground />
       <Balls count={4} />
-      {/* <Ball /> */}
     </>
   );
 }

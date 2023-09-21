@@ -19,6 +19,7 @@ export function Ball({ position }) {
   useFrame(() => {});
 
   const bindGestures = useGesture({
+    //Swiping towards the cans
     onDrag: ({ offset: [x, y], down }) => {
       if (down) {
         sphereApi.applyForce([x, -y, -(-y + 10)], [0, 0, 0]);
@@ -27,6 +28,7 @@ export function Ball({ position }) {
       }
     },
 
+    //Moving right and left
     onWheel: ({ movement }) => {
       const x = movement[1];
       console.log(x);
