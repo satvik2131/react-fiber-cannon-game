@@ -33,7 +33,7 @@ export function Scene() {
 
   return (
     <>
-      {/* <OrbitControls /> */}
+      <OrbitControls />
       <Wall position={[0, 5, -4]} rotation={[0, 0, 0]} />
       <Wall position={[5, 5, 0]} rotation={[0, -Math.PI / 2, 0]} />
       <Wall position={[-5, 5, 0]} rotation={[0, Math.PI / 2, 0]} />

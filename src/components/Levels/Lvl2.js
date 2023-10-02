@@ -5,30 +5,21 @@ import { useFrame } from "@react-three/fiber";
 
 export function Lvl2(props) {
   const { nodes, materials } = useGLTF("/models_3d/levels/lvl2/giraffe.glb");
-  const [jumping, setIsJumping] = useState(true);
-  // const direction = useRef(1);
   const position = useRef([0, 0, 0]);
   const [giraffeRef, giraffeApi] = useBox(() => ({
     mass: 1,
     position: [0, 1, 1.8],
     args: [1, 1, 1],
-    // type:"Static"
-    // allowSleep: false,
   }));
 
-  const jumpForce = 1;
-
   const jump = (direction) => {
-    const dir = direction == 1 ? [0.8, 0.8, 0] : [-0.8, 0.8, 0];
+    const jumpForce = 1;
+    const dir = direction == 1 ? [0.2, 0.2, 0] : [-0.2, 0.2, 0];
 
     giraffeApi.applyImpulse(
       [dir[0] * jumpForce, dir[1] * jumpForce, dir[2] * jumpForce],
       [0, 0, 0]
     );
-
-    setTimeout(() => {
-      setIsJumping(false);
-    }, 1000);
   };
 
   useEffect((pos) => {
@@ -47,7 +38,8 @@ export function Lvl2(props) {
       jump(1);
     }
 
-    if (x > 2 && y < 1) {
+    if (x > 0 && y < 1) {
+      //jump left
       jump(0);
     }
   });
