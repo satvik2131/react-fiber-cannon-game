@@ -11,7 +11,7 @@ export function Ball({ position }) {
     type: "Dynamic",
     position: position,
     args: [0.18, 0.18, 0.18],
-    // sleepSpeedLimit: 1,
+    // sleepSpeedLimit: 0,
   }));
 
   useFrame(() => {});
