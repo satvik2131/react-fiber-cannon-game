@@ -9,9 +9,15 @@ export function GameScreen() {
   //Contains the level
   const location = useLocation();
   const { lvl } = location.state;
-  // switch (lvl) {
-  //   case 2:
-  // }
+
+  //Rendering according to different levels
+  let SelectedLevel;
+  switch (lvl) {
+    //null means Level 0 means no complexity
+    case 2:
+      SelectedLevel = Lvl2;
+      break;
+  }
 
   return (
     <Canvas camera={{ position: [0, 1, 4] }}>
@@ -21,7 +27,7 @@ export function GameScreen() {
             <pointLight />
             <ambientLight />
             {/* Levels */}
-            <Lvl2 />
+            {lvl == 1 ? null : <SelectedLevel />}
             {/* ************* */}
             <Scene />
           </Suspense>

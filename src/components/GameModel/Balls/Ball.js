@@ -5,8 +5,6 @@ import { useGLTF } from "@react-three/drei";
 import { useRef, useState } from "react";
 
 export function Ball({ position }) {
-  const clickCount = useRef(0);
-  const { viewport } = useThree();
   // //Ball reference
   const [sphereRef, sphereApi] = useSphere(() => ({
     mass: 1,
@@ -22,7 +20,7 @@ export function Ball({ position }) {
     //Swiping towards the cans
     onDrag: ({ offset: [x, y], down }) => {
       if (down) {
-        sphereApi.applyForce([x, -y, -(-y + 10)], [0, 0, 0]);
+        sphereApi.applyForce([x, -y + 1, y + 5], [0, 0, 0]);
       } else {
         sphereApi.velocity.set(0, 0, 0);
       }
