@@ -33,7 +33,6 @@ export function BaseLevel() {
 
   return (
     <>
-      {/* <OrbitControls /> */}
       <ambientLight intensity={1.5} />
       <Wall position={[0, 5, -4]} rotation={[0, 0, 0]} />
       <Wall position={[5, 5, 0]} rotation={[0, -Math.PI / 2, 0]} />

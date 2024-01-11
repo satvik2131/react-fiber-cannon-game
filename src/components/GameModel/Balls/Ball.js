@@ -11,7 +11,6 @@ export function Ball({ position }) {
     type: "Dynamic",
     position: position,
     args: [0.18, 0.18, 0.18],
-    // sleepSpeedLimit: 2,
   }));
 
   useFrame(() => {});
@@ -20,7 +19,8 @@ export function Ball({ position }) {
     //Swiping towards the cans
     onDrag: ({ offset: [x, y], down }) => {
       if (down) {
-        sphereApi.applyForce([x, -y + 1, y + 5], [0, 0, 0]);
+        console.log(y);
+        sphereApi.applyForce([x, -y, y], [0, 0, 0]);
       } else {
         sphereApi.velocity.set(0, 0, 0);
       }
@@ -29,7 +29,6 @@ export function Ball({ position }) {
     //Moving right and left
     onWheel: ({ movement }) => {
       const x = movement[1];
-      console.log(x);
       if (x < 0) {
         sphereApi.applyForce([-0.5, 0, 0], []);
       } else {
