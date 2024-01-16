@@ -1,19 +1,19 @@
-import { Scene } from "./Scene";
 import { Canvas } from "@react-three/fiber";
 import { Physics, Debug } from "@react-three/cannon";
 import { Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import { Lvl2 } from "../Levels/Lvl2";
+import { BaseLevel } from "../Levels/BaseLevel";
 
 export function GameScreen() {
-  //Contains the level
+  //Selected Level
   const location = useLocation();
   const { lvl } = location.state;
 
-  //Rendering according to different levels
+  //Different levels 
   let SelectedLevel;
   switch (lvl) {
-    //null means Level 0 means no complexity
+    //null means Level 0 
     case 2:
       SelectedLevel = Lvl2;
       break;
@@ -26,10 +26,10 @@ export function GameScreen() {
           <Suspense fallback={null}>
             <pointLight />
             <ambientLight />
-            {/* Levels */}
+            {/* Levels (base level is common rest are hurdles created over it) */}
             {lvl == 1 ? null : <SelectedLevel />}
             {/* ************* */}
-            <Scene />
+            <BaseLevel />
           </Suspense>
         </Debug>
       </Physics>

@@ -1,10 +1,7 @@
 import { Ball } from "./Ball";
-import * as THREE from "three";
 import { useRef } from "react";
-import { useThree } from "@react-three/fiber";
 
-export function Balls({ count }) {
-  const groupRef = useRef();
+export function Balls({ count, val }) {
   const objects = [];
   var horizontalDistance = 0 - (count - 3.5);
   const zAxisDistance = 3;
@@ -12,6 +9,7 @@ export function Balls({ count }) {
   for (let i = 0; i < count; i++) {
     objects.push(
       <Ball
+        val={val}
         key={i}
         position={[horizontalDistance, i + 2, zAxisDistance]}
       ></Ball>
@@ -19,5 +17,5 @@ export function Balls({ count }) {
     horizontalDistance = horizontalDistance + 0.5;
   }
 
-  return <group>{objects}</group>;
+  return <group key={val}>{objects}</group>;
 }
