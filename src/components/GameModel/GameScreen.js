@@ -4,16 +4,17 @@ import { Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import { Lvl2 } from "../Levels/Lvl2";
 import { BaseLevel } from "../Levels/BaseLevel";
+import { OrbitControls } from "@react-three/drei";
 
 export function GameScreen() {
   //Selected Level
   const location = useLocation();
   const { lvl } = location.state;
 
-  //Different levels 
+  //Different levels
   let SelectedLevel;
   switch (lvl) {
-    //null means Level 0 
+    //null means Level 0
     case 2:
       SelectedLevel = Lvl2;
       break;

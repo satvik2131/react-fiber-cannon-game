@@ -7,6 +7,7 @@ import { Wall } from "../GameModel/Wall";
 import { Table } from "../GameModel/Table";
 import { Html } from "@react-three/drei";
 import { useState } from "react";
+import { Line } from "@react-three/drei";
 
 export function BaseLevel() {
   //this will rerender the balls
@@ -31,7 +32,7 @@ export function BaseLevel() {
 
     return (
       <mesh ref={ref}>
-        <meshStandardMaterial attach="material" {...textures} />
+        attach="material" {textures} />
         <planeGeometry args={[10, 10, 10]} />
       </mesh>
     );
@@ -83,11 +84,14 @@ export function BaseLevel() {
   return (
     <>
       <ambientLight intensity={1.5} />
+
       <Wall position={[0, 5, -4]} rotation={[0, 0, 0]} />
       <Wall position={[5, 5, 0]} rotation={[0, -Math.PI / 2, 0]} />
       <Wall position={[-5, 5, 0]} rotation={[0, Math.PI / 2, 0]} />
 
       <ResetBallsButton />
+      <OrbitControls />
+
       <Cans />
       <Table />
       <BallTable />

@@ -1,11 +1,12 @@
-import { useSphere } from "@react-three/cannon";
+import { useSphere, useTrimesh } from "@react-three/cannon";
 import { useDrag, useGesture } from "@use-gesture/react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { useRef, useState } from "react";
+import { Line } from "@react-three/drei";
+import { useState } from "react";
 
 export function Ball({ position }) {
-  // //Ball reference
+  //Ball reference
   const [sphereRef, sphereApi] = useSphere(() => ({
     mass: 1,
     type: "Dynamic",
@@ -13,14 +14,28 @@ export function Ball({ position }) {
     args: [0.18, 0.18, 0.18],
   }));
 
-  useFrame(() => {});
+  const points = useState([0, 1, 0]);
 
   const bindGestures = useGesture({
     //Swiping towards the cans
-    onDrag: ({ offset: [x, y], down }) => {
-      if (down) {
-        console.log(y);
-        sphereApi.applyForce([x, -y, y], [0, 0, 0]);
+    // onDrag: ({ offset: [x, y], active }) => {
+    //   if (!active) {
+    //     const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    //     const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    //     console.log("kkk--", mouseX, mouseY);
+    //     // sphereApi.applyForce([x, -y, y - 100], [0, 0, 0]);
+    //   } else {
+    //     sphereApi.velocity.set(0, 0, 0);
+    //   }
+    // },
+    onDrag: ({ offset: [x, y] }) => {
+      points.push([x, -y, -y]);
+      console.log(points[1]);
+    },
+
+    onDragEnd: ({ offset: [x, y], active }) => {
+      if (!active) {
+        // sphereApi.applyForce([x, -y, y - 300], [0, 0, 0]);
       } else {
         sphereApi.velocity.set(0, 0, 0);
       }
@@ -40,6 +55,7 @@ export function Ball({ position }) {
   const { nodes, materials } = useGLTF("/models_3d/ball.glb");
   return (
     <>
+      <Line points={points} />
       <mesh ref={sphereRef} {...bindGestures()}>
         <group dispose={null} scale={3.0}>
           <group rotation={[-Math.PI / 2, 0, 0]} scale={0.07}>
@@ -58,6 +74,4 @@ export function Ball({ position }) {
       </mesh>
     </>
   );
-
-  useGLTF.preload("/models_3d/scene-transformed.glb");
 }
