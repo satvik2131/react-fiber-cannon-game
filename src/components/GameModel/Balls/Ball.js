@@ -30,7 +30,7 @@ export function Ball({ position }) {
     // },
     onDrag: ({ offset: [x, y] }) => {
       points.push([x, -y, -y]);
-      console.log(points[1]);
+      console.log(x, y);
     },
 
     onDragEnd: ({ offset: [x, y], active }) => {
