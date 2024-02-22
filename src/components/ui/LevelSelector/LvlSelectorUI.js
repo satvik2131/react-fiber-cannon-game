@@ -47,7 +47,10 @@ const LvlCard = ({ lvl }) => {
   return (
     <div>
       <div className="container mx-auto flex items-center justify-center p-2 ">
-        <img className="w-16 h-16" src="./tennis.png"></img>
+        <img
+          className="w-16 h-16"
+          src="https://raw.githubusercontent.com/satvik2131/react-fiber-cannon-game/main/uploads/tennis.png"
+        ></img>
       </div>
       {/* Level Number */}
       <p className="font-mono font-semibold text-center pt-4">Lvl- {lvl}</p>
