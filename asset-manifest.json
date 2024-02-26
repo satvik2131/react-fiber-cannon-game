@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-fiber-cannon-game/static/css/main.e9a2aeff.css",
+    "main.js": "/react-fiber-cannon-game/static/js/main.40afbcfe.js",
+    "index.html": "/react-fiber-cannon-game/index.html",
+    "main.e9a2aeff.css.map": "/react-fiber-cannon-game/static/css/main.e9a2aeff.css.map",
+    "main.40afbcfe.js.map": "/react-fiber-cannon-game/static/js/main.40afbcfe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e9a2aeff.css",
+    "static/js/main.40afbcfe.js"
+  ]
+}
