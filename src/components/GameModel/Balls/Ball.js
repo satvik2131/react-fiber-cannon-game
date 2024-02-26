@@ -53,7 +53,7 @@ export function Ball({ position }) {
   });
 
   const { nodes, materials } = useGLTF(
-    "https://raw.githubusercontent.com/satvik2131/react-fiber-cannon-game/main/uploads/models_3d/ball.glb"
+    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/ball.glb`
   );
   return (
     <>

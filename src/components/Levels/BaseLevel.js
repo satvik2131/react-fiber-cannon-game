@@ -16,11 +16,11 @@ export function BaseLevel() {
 
   //Texture for the ground
   const textures = useTexture({
-    map: "./textures/ground2/rock_tile_floor_diff_1k.jpg",
-    aoMap: "./textures/ground2/rock_tile_floor_ao_1k.jpg",
-    roughnessMap: "./textures/ground2/rock_tile_floor_arm_1k.jpg",
-    metalnessMap: "./textures/ground2/rock_tile_floor_arm_1k.jpg",
-    normalMap: "./textures/ground2/rock_tile_floor_nor_gl_1k.jpg",
+    map: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_diff_1k.jpg`,
+    aoMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_ao_1k.jpg`,
+    roughnessMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_arm_1k.jpg`,
+    metalnessMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_arm_1k.jpg`,
+    normalMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_nor_gl_1k.jpg`,
   });
 
   function Ground() {
