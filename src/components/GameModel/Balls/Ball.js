@@ -53,7 +53,7 @@ export function Ball({ position }) {
   });
 
   const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/ball.glb`
+    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/golf_ball.glb`
   );
   return (
     <>
