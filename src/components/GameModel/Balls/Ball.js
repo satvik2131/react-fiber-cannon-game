@@ -58,22 +58,16 @@ export function Ball({ position }) {
   return (
     <>
       <Line points={points} />
-      <mesh ref={sphereRef} {...bindGestures()}>
-        <group dispose={null} scale={3.0}>
-          <group rotation={[-Math.PI / 2, 0, 0]} scale={0.07}>
-            <group rotation={[Math.PI / 2, 0, 0]}>
-              <mesh
-                geometry={nodes.defaultMaterial.geometry}
-                material={materials.lambert3}
-              />
-              <mesh
-                geometry={nodes.defaultMaterial_1.geometry}
-                material={materials.lambert1}
-              />
-            </group>
-          </group>
-        </group>
-      </mesh>
+      <group dispose={null}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_2.geometry}
+          material={materials["02___Default"]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          ref={sphereRef}
+        />
+      </group>
     </>
   );
 }
