@@ -52,9 +52,7 @@ export function Ball({ position }) {
     },
   });
 
-  const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/uploads/models_3d/tennis_ball.glb`
-  );
+  const { nodes, materials } = useGLTF("/tennis_ball.glb");
   return (
     <>
       {/* <Line points={points} /> */}
@@ -79,6 +77,4 @@ export function Ball({ position }) {
   );
 }
 
-useGLTF.preload(
-  `${process.env.REACT_APP_MEDIA_DIR}/uploads/models_3d/tennis_ball.glb`
-);
+useGLTF.preload("/tennis_ball.glb");
