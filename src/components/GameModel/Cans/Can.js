@@ -3,7 +3,9 @@ import { useGLTF } from "@react-three/drei";
 import { useCylinder } from "@react-three/cannon";
 
 export function Can(canposition, unique) {
-  const { nodes, materials } = useGLTF("/coke_can.glb");
+  const { nodes, materials } = useGLTF(
+    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/coke_can.glb`
+  );
 
   const [canReference, canApi] = useCylinder(() => ({
     mass: 1,
@@ -32,4 +34,4 @@ export function Can(canposition, unique) {
   );
 }
 
-useGLTF.preload("coke_can.glb");
+useGLTF.preload(`${process.env.REACT_APP_MEDIA_DIR}/models_3d/coke_can.glb`);
