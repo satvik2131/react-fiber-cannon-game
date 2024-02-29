@@ -4,7 +4,9 @@ import { useBox } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
 
 export function Lvl2(props) {
-  const { nodes, materials } = useGLTF("/models_3d/levels/lvl2/giraffe.glb");
+  const { nodes, materials } = useGLTF(
+    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/levels/lvl2/giraffe.glb`
+  );
   const position = useRef([0, 0, 0]);
   const [giraffeRef, giraffeApi] = useBox(() => ({
     mass: 1,
@@ -56,4 +58,6 @@ export function Lvl2(props) {
   );
 }
 
-useGLTF.preload("/giraffe.glb");
+useGLTF.preload(
+  `${process.env.REACT_APP_MEDIA_DIR}/models_3d/levels/lvl2/giraffe.glb`
+);
