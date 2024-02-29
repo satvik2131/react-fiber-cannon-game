@@ -4,7 +4,7 @@ import { useCylinder } from "@react-three/cannon";
 
 export function Can(canposition, unique) {
   const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/simple_cola_can.glb`
+    `${process.env.REACT_APP_MEDIA_DIR}/uploads/models_3d/coke_can.glb`
   );
 
   const [canReference, canApi] = useCylinder(() => ({
@@ -22,7 +22,7 @@ export function Can(canposition, unique) {
       <group ref={canReference}>
         <mesh
           scale={0.1}
-          ref={canReference}
+          // ref={canReference}
           castShadow
           receiveShadow
           geometry={nodes.Object_2.geometry}
@@ -35,4 +35,6 @@ export function Can(canposition, unique) {
   );
 }
 
-useGLTF.preload("/models_3d/simple_cola_can.glb");
+useGLTF.preload(
+  `${process.env.REACT_APP_MEDIA_DIR}/uploads/models_3d/coke_can.glb`
+);

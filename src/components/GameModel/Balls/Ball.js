@@ -53,21 +53,32 @@ export function Ball({ position }) {
   });
 
   const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/golf_ball.glb`
+    `${process.env.REACT_APP_MEDIA_DIR}/uploads/models_3d/tennis_ball.glb`
   );
   return (
     <>
-      <Line points={points} />
-      <group dispose={null}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_2.geometry}
-          material={materials["02___Default"]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          ref={sphereRef}
-        />
+      {/* <Line points={points} /> */}
+
+      <group scale={0.16} ref={sphereRef} dispose={null}>
+        <group>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.pCube1_Paint_Matte_Yellow_0.geometry}
+            material={materials.Paint_Matte_Yellow}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.pCube1_Paint_Matte_White_0.geometry}
+            material={materials.Paint_Matte_White}
+          />
+        </group>
       </group>
     </>
   );
 }
+
+useGLTF.preload(
+  `${process.env.REACT_APP_MEDIA_DIR}/uploads/models_3d/tennis_ball.glb`
+);
