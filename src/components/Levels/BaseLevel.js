@@ -90,7 +90,7 @@ export function BaseLevel() {
       <Wall position={[-5, 5, 0]} rotation={[0, Math.PI / 2, 0]} />
 
       <ResetBallsButton />
-      <OrbitControls />
+      {/* <OrbitControls /> */}
 
       <Cans />
       <Table />

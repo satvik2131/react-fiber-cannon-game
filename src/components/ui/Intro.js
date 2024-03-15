@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export function Intro() {
-  console.log(window.innerWidth);
+  // console.log(window.innerWidth);
   return (
     <div className="bg-blue-400 h-full overflow-y-scroll">
       {/* Short Intro  */}
