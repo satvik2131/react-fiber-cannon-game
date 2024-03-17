@@ -1,9 +1,6 @@
-import { useSphere, useTrimesh } from "@react-three/cannon";
-import { useDrag, useGesture } from "@use-gesture/react";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useSphere } from "@react-three/cannon";
+import { useGesture } from "@use-gesture/react";
 import { useGLTF } from "@react-three/drei";
-import { Line } from "@react-three/drei";
-import { useState } from "react";
 
 export function Ball({ position }) {
   //Ball reference
@@ -13,8 +10,6 @@ export function Ball({ position }) {
     position: position,
     args: [0.18, 0.18, 0.18],
   }));
-
-  const points = useState([0, 1, 0]);
 
   const bindGestures = useGesture({
     //Swiping towards the cans
@@ -28,14 +23,11 @@ export function Ball({ position }) {
     //     sphereApi.velocity.set(0, 0, 0);
     //   }
     // },
-    onDrag: ({ offset: [x, y] }) => {
-      points.push([x, -y, -y]);
-      console.log(x, y);
-    },
 
+    //Ball Throw
     onDragEnd: ({ offset: [x, y], active }) => {
       if (!active) {
-        // sphereApi.applyForce([x, -y, y - 300], [0, 0, 0]);
+        sphereApi.applyForce([x, -y, y - 300], [0, 0, 0]);
       } else {
         sphereApi.velocity.set(0, 0, 0);
       }
@@ -57,9 +49,13 @@ export function Ball({ position }) {
   );
   return (
     <>
-      {/* <Line points={points} /> */}
-
-      <group scale={0.16} ref={sphereRef} dispose={null}>
+      <group
+        name="ball"
+        scale={0.16}
+        ref={sphereRef}
+        {...bindGestures()}
+        dispose={null}
+      >
         <group>
           <mesh
             castShadow

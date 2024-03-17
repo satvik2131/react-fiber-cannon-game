@@ -1,6 +1,4 @@
-import { useFrame } from "@react-three/fiber";
 import { Can } from "./Can";
-import { usePlane } from "@react-three/cannon";
 
 export function Cans() {
   /*  Can Design

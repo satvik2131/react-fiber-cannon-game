@@ -7,11 +7,11 @@ import { Wall } from "../GameModel/Wall";
 import { Table } from "../GameModel/Table";
 import { Html } from "@react-three/drei";
 import { useState } from "react";
-import { Line } from "@react-three/drei";
 
 export function BaseLevel() {
   //this will rerender the balls
   const [ballsRerender, setBallsReRender] = useState(true);
+  const [canKnockedCount, setCanKnockedCount] = useState(0);
   const rerender = () => setBallsReRender((b) => !b);
 
   //Texture for the ground

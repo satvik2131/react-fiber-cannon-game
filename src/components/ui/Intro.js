@@ -19,7 +19,7 @@ export function Intro() {
           <div className="h-full flex ml-14 sm:ml-0 sm:justify-center items-center">
             <img
               className="rounded-full sm:h-52 sm:p-4 h-72 w-max "
-              src="https://raw.githubusercontent.com/satvik2131/react-fiber-cannon-game/main/uploads/avatar.jpeg"
+              src="https://raw.githubusercontent.com/satvik2131/react-fiber-cannon-game/main/uploads/avatar.jpg"
             />
           </div>
         </div>
