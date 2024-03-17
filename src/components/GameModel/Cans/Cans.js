@@ -1,6 +1,6 @@
 import { Can } from "./Can";
 
-export function Cans() {
+export function Cans({ knockCount, setKnockCount }) {
   /*  Can Design
    *                           }
    **                           }
@@ -27,13 +27,29 @@ export function Cans() {
   var count = 4;
   var uniqueKey = 0;
 
+  // const removeCanWithId = (id) => {
+  //   console.log(id);
+  //   if (canpositions.length != 0) {
+  //     const canpositionnew = canpositions.filter((can) => can.id !== id);
+  //     canpositions = canpositionnew;
+  //   }
+  // };
+
   for (let i = count; i > 0; i--) {
     var moving_point = start_point;
 
     for (let j = 0; j < i; j++) {
       var position = [moving_point, start_height, zAxisDistance];
       canpositions.push(
-        <Can position={position} unique={uniqueKey++} key={uniqueKey++} />
+        <Can
+          id={j + "CC" + i}
+          canposition={position}
+          unique={uniqueKey++}
+          key={uniqueKey++}
+          knockCount={knockCount}
+          setKnockCount={setKnockCount}
+          // removeCanWithId={removeCanWithId}
+        />
       );
       moving_point += horizontal_difference;
     }

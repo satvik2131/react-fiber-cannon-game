@@ -18,8 +18,8 @@ export function Intro() {
         <div className="basis-2/5 ">
           <div className="h-full flex ml-14 sm:ml-0 sm:justify-center items-center">
             <img
-              className="rounded-full sm:h-52 sm:p-4 h-72 w-max "
-              src={process.env.REACT_APP_MEDIA_DIR + "avatar.jpg  "}
+              className="rounded-full sm:h-52 sm:p-4 h-52 w-max "
+              src={process.env.REACT_APP_MEDIA_DIR + "avatar.jpeg  "}
             />
           </div>
         </div>

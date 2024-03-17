@@ -6,12 +6,14 @@ import { Balls } from "../GameModel/Balls/Balls";
 import { Wall } from "../GameModel/Wall";
 import { Table } from "../GameModel/Table";
 import { Html } from "@react-three/drei";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 
 export function BaseLevel() {
   //this will rerender the balls
   const [ballsRerender, setBallsReRender] = useState(true);
-  const [canKnockedCount, setCanKnockedCount] = useState(0);
+  var [canKnockedCount, setCanKnockedCount] = useState(0);
+  const [winCardStatus, setWinCardStatus] = useState(false);
   const rerender = () => setBallsReRender((b) => !b);
 
   //Texture for the ground
@@ -21,6 +23,18 @@ export function BaseLevel() {
     roughnessMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_arm_1k.jpg`,
     metalnessMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_arm_1k.jpg`,
     normalMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_nor_gl_1k.jpg`,
+  });
+
+  const setKnockedCount = () => {
+    setCanKnockedCount(canKnockedCount++);
+  };
+
+  useFrame(() => {
+    if (canKnockedCount === 9) {
+      console.log(canKnockedCount);
+      //Show info card
+      setWinCardStatus(true);
+    }
   });
 
   function Ground() {
@@ -81,6 +95,21 @@ export function BaseLevel() {
     );
   };
 
+  const WinCard = () => {
+    return (
+      <Html position={[0, 2, 0]}>
+        <div
+          style={{ display: winCardStatus ? "block" : "none" }}
+          className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden"
+        >
+          <div className="py-4 px-8">
+            <h2 className="text-3xl font-bold text-gray-800">You won</h2>
+          </div>
+        </div>
+      </Html>
+    );
+  };
+
   return (
     <>
       <ambientLight intensity={1.5} />
@@ -91,8 +120,10 @@ export function BaseLevel() {
 
       <ResetBallsButton />
       {/* <OrbitControls /> */}
+      {/* Win Card */}
+      <WinCard />
 
-      <Cans />
+      <Cans knockCount={canKnockedCount} setKnockCount={setKnockedCount} />
       <Table />
       <BallTable />
       <Ground />
