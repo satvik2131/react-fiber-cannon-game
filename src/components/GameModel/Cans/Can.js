@@ -4,14 +4,7 @@ import { useCylinder } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
 
-export function Can({
-  id,
-  canposition,
-  unique,
-  knockCount,
-  setKnockCount,
-  removeCanWithId,
-}) {
+export function Can({ id, canposition, unique, setKnockCount }) {
   const { nodes, materials } = useGLTF(
     `${process.env.REACT_APP_MEDIA_DIR}/models_3d/coke_can.glb`
   );

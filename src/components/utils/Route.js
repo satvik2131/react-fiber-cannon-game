@@ -1,6 +1,6 @@
 //This will also be responsible for handling levels
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { GameScreen } from "../GameModel/GameScreen";
+import { Screen } from "../GameModel/Screen";
 import { Intro } from "../ui/Intro";
 import { Lvlselector } from "../ui/LevelSelector/LvlSelectorUI";
 
@@ -12,7 +12,7 @@ export function Route() {
     },
     {
       path: "/game",
-      element: <GameScreen />,
+      element: <Screen />,
     },
     {
       path: "/lvlselector",

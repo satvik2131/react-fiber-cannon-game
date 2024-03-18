@@ -1,6 +1,6 @@
 import { Can } from "./Can";
 
-export function Cans({ knockCount, setKnockCount }) {
+export function Cans({ setKnockCount }) {
   /*  Can Design
    *                           }
    **                           }
@@ -46,9 +46,7 @@ export function Cans({ knockCount, setKnockCount }) {
           canposition={position}
           unique={uniqueKey++}
           key={uniqueKey++}
-          knockCount={knockCount}
           setKnockCount={setKnockCount}
-          // removeCanWithId={removeCanWithId}
         />
       );
       moving_point += horizontal_difference;
