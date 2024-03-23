@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-export function Intro() {
+export function Homepage() {
   // console.log(window.innerWidth);
   return (
     <div className="bg-blue-400 h-full overflow-y-scroll">
       {/* Short Intro  */}
-      <div className="flex sm:flex-col md:h-1/2 bg-slate-600  ">
+      <div className="flex sm:flex-col md:h-1/2 bg-slate-600">
         <div className="basis-3/5 flex sm:mr-0 sm:justify-center justify-end items-center mr-7">
           <p className=" hollowtext font-bold drop-shadow-xl sm:text-7xl sm:p-4 md:text-8xl lg:text-9xl">
             Hi , I'm <br />

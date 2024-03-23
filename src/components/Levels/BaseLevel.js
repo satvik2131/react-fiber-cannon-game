@@ -91,7 +91,6 @@ export function BaseLevel({ setKnockCount }) {
 
       <ResetBallsButton />
       {/* <OrbitControls /> */}
-      {/* Win Card */}
 
       <Cans setKnockCount={setKnockCount} />
       <Table />

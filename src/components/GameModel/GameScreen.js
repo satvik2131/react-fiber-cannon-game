@@ -6,13 +6,16 @@ import { Lvl2 } from "../Levels/Lvl2";
 import { BaseLevel } from "../Levels/BaseLevel";
 import { OrbitControls, Html } from "@react-three/drei";
 import { useState } from "react";
+import { CardHolder } from "../WinCards/CardHolder";
+import { EffectComposer, Pixelation } from "@react-three/postprocessing";
+import { Stage } from "@react-three/drei";
 
-export function GameScreen() {
+export function GameScreen({ setBlurStatus }) {
   //Selected Level
   const location = useLocation();
   const { lvl } = location.state;
   var [canKnockedCount, setCanKnockedCount] = useState(0);
-  const [winCardStatus, setWinCardStatus] = useState(false);
+  const [cardStatus, setCardStatus] = useState(false);
 
   const setKnockedCount = () => {
     setCanKnockedCount(canKnockedCount++);
@@ -22,7 +25,9 @@ export function GameScreen() {
     if (canKnockedCount === 9) {
       console.log(canKnockedCount);
       //Show info card
-      setWinCardStatus(true);
+      setCardStatus(true);
+      //sets the background blur
+      setBlurStatus("blur-sm");
     }
   });
 
@@ -35,34 +40,24 @@ export function GameScreen() {
       break;
   }
 
-  const WinCard = () => {
-    return (
-      <Html position={[0, 2, 0]}>
-        <div
-          style={{ display: winCardStatus ? "block" : "none" }}
-          className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden"
-        >
-          <div className="py-4 px-8">
-            <h2 className="text-3xl font-bold text-gray-800">You won</h2>
-          </div>
-        </div>
-      </Html>
-    );
-  };
-
   return (
-    <Physics gravity={[0, -9.81, 0]} allowSleep={true}>
-      <Debug>
-        <Suspense fallback={null}>
-          <pointLight />
-          <ambientLight />
-          {/* Levels (base level is common rest are hurdles created over it) */}
-          {lvl == 1 ? null : <SelectedLevel />}
-          {/* ************* */}
-          <BaseLevel setKnockCount={setKnockedCount} />
-          <WinCard />
-        </Suspense>
-      </Debug>
-    </Physics>
+    <>
+      <Physics gravity={[0, -9.81, 0]} allowSleep={true}>
+        <Debug>
+          <Suspense fallback={null}>
+            <pointLight />
+            <ambientLight />
+            <EffectComposer>
+              <Pixelation granularity={10} />
+            </EffectComposer>
+            {/* Levels (level 1 is with no hurdles , if other than 1 is selected then the lvl will also render with base ) */}
+            {lvl == 1 ? null : <SelectedLevel />}
+            {/* ************* */}
+            <BaseLevel setKnockCount={setKnockedCount} />
+          </Suspense>
+        </Debug>
+      </Physics>
+      <CardHolder lvl={lvl} cardstatus={cardStatus} />
+    </>
   );
 }
