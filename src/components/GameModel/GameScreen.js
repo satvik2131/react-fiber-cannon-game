@@ -7,14 +7,19 @@ import { BaseLevel } from "../Levels/BaseLevel";
 import { OrbitControls, Html } from "@react-three/drei";
 import { useState } from "react";
 import { CardHolder } from "../WinCards/CardHolder";
-import { EffectComposer, Pixelation } from "@react-three/postprocessing";
+import {
+  EffectComposer,
+  Pixelation,
+  DepthOfField,
+} from "@react-three/postprocessing";
 import { Stage } from "@react-three/drei";
 
-export function GameScreen({ setBlurStatus }) {
+export function GameScreen() {
   //Selected Level
   const location = useLocation();
   const { lvl } = location.state;
   var [canKnockedCount, setCanKnockedCount] = useState(0);
+  //Default --> Hide (false)
   const [cardStatus, setCardStatus] = useState(false);
 
   const setKnockedCount = () => {
@@ -26,8 +31,6 @@ export function GameScreen({ setBlurStatus }) {
       console.log(canKnockedCount);
       //Show info card
       setCardStatus(true);
-      //sets the background blur
-      setBlurStatus("blur-sm");
     }
   });
 
@@ -47,9 +50,11 @@ export function GameScreen({ setBlurStatus }) {
           <Suspense fallback={null}>
             <pointLight />
             <ambientLight />
-            <EffectComposer>
-              <Pixelation granularity={10} />
-            </EffectComposer>
+            {cardStatus ? (
+              <EffectComposer>
+                <DepthOfField bokehScale={10} focalLength={0} />
+              </EffectComposer>
+            ) : null}
             {/* Levels (level 1 is with no hurdles , if other than 1 is selected then the lvl will also render with base ) */}
             {lvl == 1 ? null : <SelectedLevel />}
             {/* ************* */}
