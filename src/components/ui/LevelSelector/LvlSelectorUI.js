@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Link } from "wouter";
 
 export function Lvlselector() {
   return (
@@ -25,8 +26,7 @@ const LevelRow = ({ rowno }) => {
         <Link
           key={lvl}
           className={`${color} rounded-lg w-8/12 mt-5 ml-5 hover:bg-slate-950 hover:w-3/4 hover:h-full`}
-          to={`/game`}
-          state={{ lvl: lvl }}
+          to={`/game/${lvl}`}
         >
           <LvlCard lvl={lvl} />
         </Link>

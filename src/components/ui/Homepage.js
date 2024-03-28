@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Link } from "wouter";
 
 export function Homepage() {
   // console.log(window.innerWidth);

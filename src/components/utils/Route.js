@@ -1,24 +1,15 @@
 //This will also be responsible for handling levels
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Screen } from "../GameModel/Screen";
 import { Homepage } from "../ui/Homepage";
 import { Lvlselector } from "../ui/LevelSelector/LvlSelectorUI";
+import { Switch, Route } from "wouter";
 
-export function Route() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Homepage />,
-    },
-    {
-      path: "/game",
-      element: <Screen />,
-    },
-    {
-      path: "/lvlselector",
-      element: <Lvlselector />,
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
+export function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Homepage} />
+      <Route path="/game/:lvl" component={Screen} />
+      <Route path="/lvlselector" component={Lvlselector} />
+    </Switch>
+  );
 }

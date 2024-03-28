@@ -1,9 +1,11 @@
+// import { Link } from "react-router-dom";
+import { Link } from "wouter";
 import intro from "../../data/intro.json";
 import { FaTwitter, FaLinkedin, FaGithub, FaStar } from "react-icons/fa";
 
 export function Intro() {
   return (
-    <>
+    <div>
       <div class="font-bold text-2xl mb-2 text-center text-zinc-50">
         {intro.title}
       </div>
@@ -11,16 +13,19 @@ export function Intro() {
 
       <ThreeStars />
 
-      <div class="max-w-sm rounded overflow-hidden shadow-xl bg-white">
+      <div class="max-w-sm rounded overflow-hidden shadow-xl bg-slate-700">
         <div class="px-6 py-4">
-          <p class="text-gray-700 text-base">{intro.description}</p>
+          <p class="text-gray-700 text-base text-white">{intro.description}</p>
         </div>
       </div>
 
       <hr className="my-6 border-t border-gray-300" />
+      <Link to={`/game/2`}>
+        <div>Hola</div>
+      </Link>
 
       <SocialIcons />
-    </>
+    </div>
   );
 }
 
