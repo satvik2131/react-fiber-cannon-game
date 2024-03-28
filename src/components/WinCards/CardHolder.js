@@ -15,10 +15,10 @@ export function CardHolder({ lvl, cardstatus }) {
 
   return (
     <Html
-      position={[-1.5, 1.5, 0]}
+      position={[-1.5, 2, 0]}
       //  className={cardstatus ? null : "hidden"}
     >
-      <div className="w-96 h-auto bg-slate-600 rounded-lg p-8 shadow-2xl">
+      <div className="w-96 h-auto bg-gray-700 rounded-lg p-8 shadow-2xl">
         <WinCard />
       </div>
     </Html>

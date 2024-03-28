@@ -1,13 +1,12 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Physics, Debug } from "@react-three/cannon";
 import { Suspense } from "react";
 import { Lvl2 } from "../Levels/Lvl2";
 import { BaseLevel } from "../Levels/BaseLevel";
-import { OrbitControls, Html } from "@react-three/drei";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CardHolder } from "../WinCards/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
-import { useParams } from "wouter";
+import { useParams, Link, useLocation } from "wouter";
 
 export function GameScreen() {
   //Selected Level
@@ -16,10 +15,24 @@ export function GameScreen() {
   var [canKnockedCount, setCanKnockedCount] = useState(0);
   //Default --> Hide (false)
   const [cardStatus, setCardStatus] = useState(false);
+  const [location, setLocation] = useLocation();
 
   const setKnockedCount = () => {
     setCanKnockedCount(canKnockedCount++);
   };
+
+  useEffect(() => {
+    //redirects to LvlSelector Page in every level
+    const handlePopState = () => {
+      setLocation("/lvlselector");
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   useFrame(() => {
     if (canKnockedCount === 9) {
