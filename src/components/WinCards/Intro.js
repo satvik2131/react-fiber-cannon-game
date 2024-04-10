@@ -2,7 +2,7 @@
 import { Link } from "wouter";
 import intro from "../../data/intro.json";
 import { FaTwitter, FaLinkedin, FaGithub, FaStar } from "react-icons/fa";
-import { TbPlayerTrackNextFilled } from "react-icons/tb";
+import { NextLevel } from "./utils/RedirectionAndLoading";
 
 export function Intro() {
   return (
@@ -24,7 +24,7 @@ export function Intro() {
 
       <SocialIcons />
 
-      <NextLevel />
+      <NextLevel className="flex justify-end text-slate-200" />
     </div>
   );
 }
@@ -36,14 +36,6 @@ const ThreeStars = () => {
       <FaStar className="text-yellow-400 w-6 h-6" />
       <FaStar className="text-yellow-400 w-6 h-6" />
     </div>
-  );
-};
-
-const NextLevel = () => {
-  return (
-    <Link to={`/game/2`} className="flex justify-end text-slate-200">
-      <TbPlayerTrackNextFilled size={50} />
-    </Link>
   );
 };
 

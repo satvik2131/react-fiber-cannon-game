@@ -1,5 +1,5 @@
 import { usePlane } from "@react-three/cannon";
-import { OrbitControls, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { Cans } from "../GameModel/Cans/Cans";
 import { BallTable } from "../GameModel/Balls/BallTable";
 import { Balls } from "../GameModel/Balls/Balls";
@@ -90,7 +90,6 @@ export function BaseLevel({ setKnockCount }) {
       <Wall position={[-5, 5, 0]} rotation={[0, Math.PI / 2, 0]} />
 
       <ResetBallsButton />
-      {/* <OrbitControls /> */}
 
       <Cans setKnockCount={setKnockCount} />
       <Table />

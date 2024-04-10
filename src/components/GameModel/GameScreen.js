@@ -6,7 +6,7 @@ import { BaseLevel } from "../Levels/BaseLevel";
 import { useState, useEffect } from "react";
 import { CardHolder } from "../WinCards/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
-import { useParams, Link, useLocation } from "wouter";
+import { useParams, useLocation } from "wouter";
 
 export function GameScreen() {
   //Selected Level
