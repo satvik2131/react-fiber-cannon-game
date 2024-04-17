@@ -18,20 +18,29 @@ export function Lvl2() {
     type: "Static",
   }));
 
-  const [springProps, set] = useSpring(() => ({
-    from: { position: initialPosition },
-    to: { position: [1, 1, 1.8] },
+  const rightX = 2;
+  const leftX = -2;
+  const y = 4;
 
-    onChange: (j) => {
-      setCurrentPos(j.value.position);
-    },
-  }));
-
-  useEffect(() => {
-    giraffeApi.position.subscribe(() => {
-      giraffeApi.position.set(currentPos);
-    });
+  useFrame(() => {
+    const direction = Math.random() < 0.5 ? 0 : 1;
+    //move to right
   });
+
+  // const [springProps, set] = useSpring(() => ({
+  //   from: { position: initialPosition },
+  //   to: { position: [1, 1, 1.8] },
+
+  //   onChange: (j) => {
+  //     setCurrentPos(j.value.position);
+  //   },
+  // }));
+
+  // useEffect(() => {
+  //   giraffeApi.position.subscribe(() => {
+  //     giraffeApi.position.set(currentPos);
+  //   });
+  // });
 
   return (
     <animated.mesh
