@@ -6,7 +6,7 @@ import { useFrame } from "@react-three/fiber";
 
 export function Lvl2() {
   const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/levels/lvl2/giraffe.glb`
+    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/levels/lvl2/skull.glb`
   );
 
   const [currentPos, setCurrentPos] = useState([0, 1, 1.8]);
