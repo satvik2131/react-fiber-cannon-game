@@ -8,33 +8,30 @@ export function Lvl2() {
   const { nodes, materials } = useGLTF(
     `${process.env.REACT_APP_MEDIA_DIR}/models_3d/levels/lvl2/giraffe.glb`
   );
-  const initialPosition = [0, 1, 1.8];
-  const [currentPos, setCurrentPos] = useState();
+
+  const [currentPos, setCurrentPos] = useState([0, 1, 1.8]);
 
   const [giraffeRef, giraffeApi] = useBox(() => ({
     mass: 1,
-    position: initialPosition,
+    position: currentPos,
     args: [1, 1, 1],
     type: "Static",
   }));
 
-  const [springProps, set] = useSpring(() => ({
-    from: { position: initialPosition },
-    to: { position: [1, 1, 1.8] },
-
-    onChange: (j) => {
-      setCurrentPos(j.value.position);
-    },
-  }));
-
-  useEffect(() => {
-    giraffeApi.position.subscribe(() => {
-      giraffeApi.position.set(currentPos);
-    });
+  useFrame(() => {
+    if (currentPos[1] < 5) {
+      setCurrentPos([currentPos[0], currentPos[1] + 0.01, currentPos[2]]);
+      console.log(currentPos);
+      giraffeApi.position.set(
+        currentPos[0],
+        currentPos[1] + 0.01,
+        currentPos[2]
+      );
+    }
   });
 
   return (
-    <animated.mesh
+    <mesh
       dispose={null}
       scale={0.002}
       ref={giraffeRef}
