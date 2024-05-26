@@ -6,7 +6,7 @@ export const Screen = () => {
   return (
     <group>
       <Canvas camera={{ position: [0, 1, 4] }}>
-        <OrbitControls />
+        {/* <OrbitControls /> */}
         <GameScreen />
       </Canvas>
       <Loader />
