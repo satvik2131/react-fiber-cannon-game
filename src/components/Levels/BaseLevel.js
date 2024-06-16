@@ -1,4 +1,4 @@
-import { usePlane } from "@react-three/cannon";
+  import { usePlane } from "@react-three/cannon";
 import { useTexture } from "@react-three/drei";
 import { Cans } from "../GameModel/Cans/Cans";
 import { BallTable } from "../GameModel/Balls/BallTable";
