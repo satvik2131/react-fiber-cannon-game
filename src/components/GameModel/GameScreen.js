@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { Lvl2 } from "../Levels/Lvl2";
 import { BaseLevel } from "../Levels/BaseLevel";
 import { useState, useEffect } from "react";
-import { CardHolder } from "../WinCards/CardHolder";
+import { CardHolder } from "../WinCards/utils/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 import { useParams, useLocation } from "wouter";
 
@@ -12,7 +12,8 @@ export function GameScreen() {
   //Selected Level
   const params = useParams();
   const lvl = parseInt(params.lvl);
-  var [canKnockedCount, setCanKnockedCount] = useState(0);
+  let [canKnockedCount, setCanKnockedCount] = useState(0);
+
   //Default --> Hide (false)
   const [cardStatus, setCardStatus] = useState(false);
   const [location, setLocation] = useLocation();
@@ -28,7 +29,6 @@ export function GameScreen() {
     };
 
     window.addEventListener("popstate", handlePopState);
-
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
@@ -36,7 +36,6 @@ export function GameScreen() {
 
   useFrame(() => {
     if (canKnockedCount === 9) {
-      console.log(canKnockedCount);
       //Show info card
       setCardStatus(true);
     }
@@ -53,23 +52,19 @@ export function GameScreen() {
 
   return (
     <>
-      <Physics gravity={[0, -9.81, 0]} allowSleep={true}>
-        <Debug>
-          <Suspense fallback={null}>
-            <pointLight />
-            <ambientLight />
-            {cardStatus ? (
-              <EffectComposer>
-                <DepthOfField bokehScale={10} focalLength={0} />
-              </EffectComposer>
-            ) : null}
-            {/* Levels (level 1 is with no hurdles , if other than 1 is selected then the lvl will also render with base ) */}
-            {lvl == 1 ? null : <SelectedLevel />}
-            {/* ************* */}
-            <BaseLevel setKnockCount={setKnockedCount} />
-          </Suspense>
-        </Debug>
-      </Physics>
+      <Suspense fallback={null}>
+        <pointLight />
+        <ambientLight />
+        {cardStatus ? (
+          <EffectComposer>
+            <DepthOfField bokehScale={10} focalLength={0} />
+          </EffectComposer>
+        ) : null}
+        {/* Levels (level 1 is with no hurdles , if other than 1 is selected then the lvl will also render with base ) */}
+        {lvl == 1 ? null : <SelectedLevel />}
+        {/* ************* */}
+        <BaseLevel setKnockCount={setKnockedCount} />
+      </Suspense>
 
       <CardHolder lvl={lvl} cardstatus={cardStatus} />
     </>

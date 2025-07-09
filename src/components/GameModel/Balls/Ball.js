@@ -62,12 +62,18 @@ export function Ball({ position }) {
             receiveShadow
             geometry={nodes.pCube1_Paint_Matte_Yellow_0.geometry}
             material={materials.Paint_Matte_Yellow}
+            material-metalness={0.1}
+            material-roughness={0.8}
+            material-color={0xe6e600}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.pCube1_Paint_Matte_White_0.geometry}
             material={materials.Paint_Matte_White}
+            material-metalness={0.1}
+            material-roughness={0.8}
+            material-color={0xfafafa}
           />
         </group>
       </group>

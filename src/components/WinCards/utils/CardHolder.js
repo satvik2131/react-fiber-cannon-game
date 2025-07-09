@@ -1,6 +1,6 @@
 import { Html } from "@react-three/drei";
-import { Intro } from "./Intro";
-import { Skills } from "./Skills";
+import { Intro } from "../Intro";
+import { Skills } from "../Skills";
 
 export function CardHolder({ lvl, cardstatus }) {
   var WinCard;
