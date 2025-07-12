@@ -50,7 +50,7 @@ export function Skills() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <section className="w-full max-w-2xl mx-auto p-4 sm:p-8 rounded-3xl bg-gradient-to-br from-[#f5f7fa] to-[#c3cfe2]">
+    <section className="w-full max-w-2xl mx-auto p-4 sm:p-8 rounded-3xl ">
       <h2 className="text-center text-3xl mb-8 tracking-wide font-extrabold text-gray-800">
         <span className="text-[#61dafb]">My</span> Skills
       </h2>
