@@ -1,8 +1,8 @@
-// import { Link } from "react-router-dom";
 import { Link } from "wouter";
+import { useRef, useState } from "react";
 
 export function Homepage() {
-  // console.log(window.innerWidth);
+  const imageUrl = useRef(`/uploads/avatar.jpeg`);
   return (
     <div className="bg-blue-400 h-full overflow-y-scroll">
       {/* Short Intro  */}
@@ -20,7 +20,7 @@ export function Homepage() {
           <div className="h-full flex ml-14 sm:ml-0 sm:justify-center items-center">
             <img
               className="rounded-full sm:h-52 sm:p-4 h-52 w-max "
-              src={process.env.REACT_APP_MEDIA_DIR + "avatar.jpeg  "}
+              src={imageUrl.current}
             />
           </div>
         </div>

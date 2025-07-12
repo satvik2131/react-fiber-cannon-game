@@ -5,9 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
 
 export function Can({ id, canposition, unique, setKnockCount }) {
-  const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/coke_can.glb`
-  );
+  const { nodes, materials } = useGLTF(`/uploads/models_3d/coke_can.glb`);
   const [visibility, setVisibility] = useState(true);
   const [canType, setCanType] = useState("Dynamic");
 
@@ -55,4 +53,4 @@ export function Can({ id, canposition, unique, setKnockCount }) {
   );
 }
 
-useGLTF.preload(`${process.env.REACT_APP_MEDIA_DIR}/models_3d/coke_can.glb`);
+useGLTF.preload(`/uploads/models_3d/coke_can.glb`);

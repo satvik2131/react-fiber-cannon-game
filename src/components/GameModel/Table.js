@@ -12,9 +12,7 @@ export function Table() {
     type: "Dynamic",
   }));
 
-  const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/table.glb`
-  );
+  const { nodes, materials } = useGLTF(`/uploads/models_3d/table.glb`);
   return (
     <mesh ref={ref} update={tableApi}>
       <group dispose={null}>

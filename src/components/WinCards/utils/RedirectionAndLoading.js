@@ -1,10 +1,10 @@
-import { Link, Redirect, useLocation, useParams } from "wouter";
+import { Link, useLocation, useParams } from "wouter";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { motion } from "framer-motion";
 
-export const NextLevel = ({ className }) => {
+export const NextLevel = ({ nextlvl, className }) => {
   return (
-    <Link to="/loading/2" className={className}>
+    <Link to={`/loading/${nextlvl}`} className={className}>
       <TbPlayerTrackNextFilled size={50} />
     </Link>
   );

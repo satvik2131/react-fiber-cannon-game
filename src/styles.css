@@ -10,8 +10,9 @@ body {
 }
 
 .hollowtext {
-  color: white;
-  font-size: 30px;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black;
+  font-size: 30px; /* adjust as needed */
+  color: rgba(255, 255, 255, 0.815); /* light semi-transparent fill inside */
+  -webkit-text-stroke: 1.5px black;
+  text-stroke: 1.5px black; /* standard fallback */
+  font-weight: 600; /* keeps it modern */
 }

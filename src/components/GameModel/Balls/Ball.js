@@ -44,9 +44,7 @@ export function Ball({ position }) {
     },
   });
 
-  const { nodes, materials } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/tennis_ball.glb`
-  );
+  const { nodes, materials } = useGLTF(`/uploads/models_3d/tennis_ball.glb`);
   return (
     <>
       <group
@@ -62,12 +60,18 @@ export function Ball({ position }) {
             receiveShadow
             geometry={nodes.pCube1_Paint_Matte_Yellow_0.geometry}
             material={materials.Paint_Matte_Yellow}
+            material-metalness={0.1}
+            material-roughness={0.8}
+            material-color={0xe6e600}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.pCube1_Paint_Matte_White_0.geometry}
             material={materials.Paint_Matte_White}
+            material-metalness={0.1}
+            material-roughness={0.8}
+            material-color={0xfafafa}
           />
         </group>
       </group>
@@ -75,4 +79,4 @@ export function Ball({ position }) {
   );
 }
 
-useGLTF.preload(`${process.env.REACT_APP_MEDIA_DIR}/models_3d/tennis_ball.glb`);
+useGLTF.preload(`/uploads/models_3d/tennis_ball.glb`);
