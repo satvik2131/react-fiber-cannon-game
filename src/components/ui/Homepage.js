@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { useRef, useState } from "react";
 
 export function Homepage() {
-  const imageUrl = useRef(`${process.env.REACT_APP_MEDIA_DIR}/avatar.jpeg`);
+  const imageUrl = useRef(`/uploads/avatar.jpeg`);
   return (
     <div className="bg-blue-400 h-full overflow-y-scroll">
       {/* Short Intro  */}

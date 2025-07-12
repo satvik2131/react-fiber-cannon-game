@@ -13,7 +13,7 @@ export function Lvl2(props) {
   }));
 
   const { nodes, materials, animations } = useGLTF(
-    `${process.env.REACT_APP_MEDIA_DIR}/models_3d/bird.glb`
+    `/uploads/models_3d/bird.glb`
   );
   const { actions } = useAnimations(animations, ref);
 
@@ -35,7 +35,6 @@ export function Lvl2(props) {
     const elapsed = clock.getElapsedTime();
     // Oscillate x between -5 and +5 using sine for back-and-forth motion
     const x = 2 * Math.sin(elapsed * 0.8); // Adjust speed and range as needed
-    console.log("x:", x);
     api.position.set(x, 1.5, 1.5);
 
     // Determine direction and set rotation

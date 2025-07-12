@@ -1,5 +1,3 @@
-// import { Link } from "react-router-dom";
-import { Link } from "wouter";
 import intro from "../../data/intro.json";
 import { FaTwitter, FaLinkedin, FaGithub, FaStar } from "react-icons/fa";
 import { NextLevel } from "./utils/RedirectionAndLoading";
@@ -7,14 +5,14 @@ import { NextLevel } from "./utils/RedirectionAndLoading";
 export function Intro() {
   return (
     <div>
-      <div class="font-bold text-2xl mb-2 text-center text-zinc-50">
+      <div class="flex flex-col font-bold text-2xl mb-2 text-center text-zinc-50">
         {intro.title}
       </div>
       <hr className="my-6 border-t border-gray-300" />
 
       <ThreeStars />
 
-      <div class="max-w-sm rounded overflow-hidden shadow-xl bg-slate-800">
+      <div class="w-auto flex items-center justify-center rounded overflow-hidden shadow-xl bg-slate-800">
         <div class="px-6 py-4">
           <p class=" text-base text-white">{intro.description}</p>
         </div>

@@ -1,53 +1,48 @@
 import { useFrame } from "@react-three/fiber";
-import { Physics, Debug } from "@react-three/cannon";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Lvl2 } from "../Levels/Lvl2";
 import { BaseLevel } from "../Levels/BaseLevel";
-import { useState, useEffect } from "react";
 import { CardHolder } from "../WinCards/utils/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 import { useParams, useLocation } from "wouter";
 
 export function GameScreen() {
-  //Selected Level
   const params = useParams();
   const lvl = parseInt(params.lvl);
-  let [canKnockedCount, setCanKnockedCount] = useState(0);
-
-  //Default --> Hide (false)
-  const [cardStatus, setCardStatus] = useState(false);
   const [location, setLocation] = useLocation();
+  const [cardStatus, setCardStatus] = useState(false);
+  const [canKnockedCount, setCanKnockedCount] = useState(0);
+
+  // redirect for WIP levels, but after hooks
+  useEffect(() => {
+    if ([3, 4, 5, 6].includes(lvl)) {
+      setLocation("/wip", { replace: true });
+    }
+  }, [lvl, setLocation]);
 
   const setKnockedCount = () => {
-    setCanKnockedCount(canKnockedCount++);
+    setCanKnockedCount((prev) => prev + 1);
   };
 
   useEffect(() => {
-    //redirects to LvlSelector Page in every level
-    const handlePopState = () => {
-      setLocation("/lvlselector");
-    };
-
+    const handlePopState = () => setLocation("/lvlSelector");
     window.addEventListener("popstate", handlePopState);
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [setLocation]);
 
-  useFrame(() => {
+  useEffect(() => {
     if (canKnockedCount === 9) {
-      //Show info card
       setCardStatus(true);
     }
-  });
+  }, [canKnockedCount]);
 
-  //Different levels
-  let SelectedLevel;
+  let SelectedLevel = null;
   switch (lvl) {
-    //null means Level 0
     case 2:
       SelectedLevel = Lvl2;
       break;
+    default:
+      SelectedLevel = null;
   }
 
   return (
@@ -55,17 +50,15 @@ export function GameScreen() {
       <Suspense fallback={null}>
         <pointLight />
         <ambientLight />
-        {cardStatus ? (
+        {cardStatus && (
           <EffectComposer>
             <DepthOfField bokehScale={10} focalLength={0} />
           </EffectComposer>
-        ) : null}
-        {/* Levels (level 1 is with no hurdles , if other than 1 is selected then the lvl will also render with base ) */}
-        {lvl == 1 ? null : <SelectedLevel />}
-        {/* ************* */}
+        )}
+
+        {lvl !== 1 && SelectedLevel && <SelectedLevel />}
         <BaseLevel setKnockCount={setKnockedCount} />
       </Suspense>
-
       <CardHolder lvl={lvl} cardstatus={cardStatus} />
     </>
   );

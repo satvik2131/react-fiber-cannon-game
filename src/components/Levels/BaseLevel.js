@@ -15,11 +15,11 @@ export function BaseLevel({ setKnockCount }) {
 
   //Texture for the ground
   const textures = useTexture({
-    map: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_diff_1k.jpg`,
-    aoMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_ao_1k.jpg`,
-    roughnessMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_arm_1k.jpg`,
-    metalnessMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_arm_1k.jpg`,
-    normalMap: `${process.env.REACT_APP_MEDIA_DIR}/textures/ground2/rock_tile_floor_nor_gl_1k.jpg`,
+    map: `/uploads/textures/ground2/rock_tile_floor_diff_1k.jpg`,
+    aoMap: `/uploads/textures/ground2/rock_tile_floor_ao_1k.jpg`,
+    roughnessMap: `/uploads/textures/ground2/rock_tile_floor_arm_1k.jpg`,
+    metalnessMap: `/uploads/textures/ground2/rock_tile_floor_arm_1k.jpg`,
+    normalMap: `/uploads/textures/ground2/rock_tile_floor_nor_gl_1k.jpg`,
   });
 
   function Ground() {
