@@ -24,7 +24,7 @@ export function CardHolder({ lvl, cardstatus }) {
     <Html
       center
       position={winCardPosition}
-      className={cardstatus ? null : "visible"}
+      className={cardstatus ? null : "hidden"}
     >
       <div
         className="w-[34rem] max-w-full bg-gray-700 rounded-lg p-5 shadow-2xl overflow-y-auto"
