@@ -1,22 +1,32 @@
 import { Link, useLocation, useParams } from "wouter";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { motion } from "framer-motion";
+import { useAppLocation } from "../../../hooks/useAppLocation";
 
 export const NextLevel = ({ nextlvl, className }) => {
+  const [location, setAppLocation] = useAppLocation();
+  const handleClick = () => {
+    setAppLocation(`/loading/${nextlvl}`, { replace: true });
+  };
+
   return (
-    <Link to={`/loading/${nextlvl}`} className={className}>
+    <a onClick={handleClick} className={className}>
       <TbPlayerTrackNextFilled size={50} />
-    </Link>
+    </a>
   );
 };
 
 export const LoadingScreen = () => {
   const params = useParams();
-  const [location, setLocation] = useLocation();
+  const [location, setAppLocation] = useAppLocation();
   const lvl = parseInt(params.lvl);
 
   setTimeout(() => {
-    setLocation(`/game/${lvl}`);
+    if (lvl === 3 || lvl === 4 || lvl === 5 || lvl === 6) {
+      setAppLocation("/wip");
+      return;
+    }
+    setAppLocation(`/game/${lvl}`);
   }, 1500);
 
   return (

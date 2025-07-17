@@ -4,7 +4,8 @@ import { Skills } from "../Skills";
 import { useState } from "react";
 
 export function CardHolder({ lvl, cardstatus }) {
-  const [winCardPosition, setWinCardPosition] = useState([-2.5, 2.1, 0]);
+  const [winCardPosition, setWinCardPosition] = useState([0, 0, 0]);
+
   let WinCard;
   if (lvl) {
     switch (lvl) {
@@ -20,7 +21,11 @@ export function CardHolder({ lvl, cardstatus }) {
   }
 
   return (
-    <Html position={winCardPosition} className={cardstatus ? null : "hidden"}>
+    <Html
+      center
+      position={winCardPosition}
+      className={cardstatus ? null : "visible"}
+    >
       <div
         className="w-[34rem] max-w-full bg-gray-700 rounded-lg p-5 shadow-2xl overflow-y-auto"
         style={{

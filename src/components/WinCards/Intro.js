@@ -22,7 +22,7 @@ export function Intro() {
 
       <SocialIcons />
 
-      <NextLevel className="flex justify-end text-slate-200" />
+      <NextLevel nextlvl={2} className="flex justify-end text-slate-200" />
     </div>
   );
 }

@@ -1,50 +1,6 @@
 import { useState } from "react";
 import { NextLevel } from "./utils/RedirectionAndLoading";
-
-const skills = [
-  {
-    name: "React",
-    icon: "⚛️",
-    color: "from-[#61dafb] to-[#21a1f3]",
-    rating: 90,
-  },
-  {
-    name: "Android",
-    icon: "🤖",
-    color: "from-[#3ddc84] to-[#1de9b6]",
-    rating: 80,
-  },
-  {
-    name: "Three.js",
-    icon: "🌌",
-    color: "from-gray-400 to-black",
-    rating: 75,
-  },
-  {
-    name: "Vue.js",
-    icon: "🟩",
-    color: "from-[#42b883] to-[#35495e]",
-    rating: 70,
-  },
-  {
-    name: "Express.js",
-    icon: "🚂",
-    color: "from-[#222] to-gray-700",
-    rating: 85,
-  },
-  {
-    name: "Node.js",
-    icon: "🌳",
-    color: "from-[#68a063] to-[#3c873a]",
-    rating: 88,
-  },
-  {
-    name: "Firebase",
-    icon: "🔥",
-    color: "from-[#ffca28] to-[#ffa000]",
-    rating: 65,
-  },
-];
+import skills from "../../data/skills.json";
 
 export function Skills() {
   const [hovered, setHovered] = useState(null);
@@ -57,7 +13,7 @@ export function Skills() {
       <hr className="my-6 border-t border-gray-300" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        {skills.map((skill, idx) => (
+        {skills.skills.map((skill, idx) => (
           <div
             key={skill.name}
             className={`relative rounded-2xl w-full flex flex-col items-center justify-center shadow-xl transition-all duration-300 cursor-pointer border-0 p-6 bg-gradient-to-br ${skill.color} overflow-hidden`}

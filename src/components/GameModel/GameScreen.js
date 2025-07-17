@@ -1,34 +1,27 @@
-import { useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
 import { Lvl2 } from "../Levels/Lvl2";
 import { BaseLevel } from "../Levels/BaseLevel";
 import { CardHolder } from "../WinCards/utils/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
-import { useParams, useLocation } from "wouter";
+import { useParams } from "wouter";
+import { useAppLocation } from "../../hooks/useAppLocation";
 
 export function GameScreen() {
   const params = useParams();
   const lvl = parseInt(params.lvl);
-  const [location, setLocation] = useLocation();
+  const [location, setAppLocation] = useAppLocation();
   const [cardStatus, setCardStatus] = useState(false);
   const [canKnockedCount, setCanKnockedCount] = useState(0);
-
-  // redirect for WIP levels, but after hooks
-  useEffect(() => {
-    if ([3, 4, 5, 6].includes(lvl)) {
-      setLocation("/wip", { replace: true });
-    }
-  }, [lvl, setLocation]);
 
   const setKnockedCount = () => {
     setCanKnockedCount((prev) => prev + 1);
   };
 
   useEffect(() => {
-    const handlePopState = () => setLocation("/lvlSelector");
+    const handlePopState = () => setAppLocation("/lvlSelector");
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [setLocation]);
+  }, [lvl, setAppLocation]);
 
   useEffect(() => {
     if (canKnockedCount === 9) {

@@ -1,5 +1,4 @@
-// import { Link } from "react-router-dom";
-import { Link } from "wouter";
+import { useAppLocation } from "../../../hooks/useAppLocation";
 
 export function Lvlselector() {
   return (
@@ -19,11 +18,16 @@ export function Lvlselector() {
 const LevelRow = ({ rowno }) => {
   const color = rowno === 1 ? "bg-blue-400" : "bg-slate-600";
   const levels = rowno === 1 ? [1, 2, 3] : [4, 5, 6];
+  const [location, setAppLocation] = useAppLocation();
+
+  const openLevel = (lvl) => {
+    setAppLocation(`/game/${lvl}`, { replace: true });
+  };
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 h-4/5 w-full px-2 py-4">
       {levels.map((lvl) => (
-        <Link
+        <a
           key={lvl}
           className={`
             ${color} rounded-lg 
@@ -33,10 +37,10 @@ const LevelRow = ({ rowno }) => {
             hover:bg-slate-950 hover:scale-105
             shadow-md
           `}
-          to={`/game/${lvl}`}
+          onClick={() => openLevel(lvl)}
         >
           <LvlCard lvl={lvl} />
-        </Link>
+        </a>
       ))}
     </div>
   );

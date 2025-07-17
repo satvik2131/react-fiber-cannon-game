@@ -1,4 +1,10 @@
+import { useEffect } from "react";
+import { useLocation } from "wouter";
+import { useAppLocation } from "../../../hooks/useAppLocation";
+
 export default function WorkInProgress() {
+  const [location, setAppLocation] = useAppLocation();
+
   const notionResumeUrl =
     "https://atom-dish-e6d.notion.site/Satvik-Kushwaha-15dc151318df806fb9fbf1ae3263108f?source=copy_link";
   return (
