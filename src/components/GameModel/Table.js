@@ -5,7 +5,7 @@ import { useGLTF } from "@react-three/drei";
 
 export function Table() {
   const [ref, tableApi] = useBox(() => ({
-    mass: 10,
+    mass: 0,
     args: [1.5, 1.1, 2],
     position: [0, 0.49, 0.5],
     rotation: [-Math.PI / 2, -Math.PI / 2, -Math.PI / 2],

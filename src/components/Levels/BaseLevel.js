@@ -47,7 +47,7 @@ export function BaseLevel({ setKnockCount }) {
 
       <ResetBallsButton rerender={rerender} />
 
-      <Cans setKnockCount={setKnockCount} />
+      <Cans />
       <Table />
       <BallTable />
       <Ground />

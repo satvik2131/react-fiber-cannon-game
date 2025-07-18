@@ -8,7 +8,7 @@ export function Homepage() {
       {/* Short Intro  */}
       <div className="flex sm:flex-col md:h-1/2 bg-slate-600">
         <div className="basis-3/5 flex sm:mr-0 sm:justify-center justify-end items-center mr-7">
-          <p className=" hollowtext font-bold drop-shadow-xl sm:text-7xl sm:p-4 md:text-8xl lg:text-9xl">
+          <p className=" hollowtext font-bold sm:text-7xl sm:p-4 md:text-8xl lg:text-9xl">
             Hi , I'm <br />
             Satvik
           </p>

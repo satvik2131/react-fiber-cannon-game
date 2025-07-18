@@ -6,8 +6,8 @@ import { useFrame } from "@react-three/fiber";
 export function Lvl2(props) {
   // Kinematic so we can move it manually
   const [ref, api] = useBox(() => ({
-    mass: 1,
-    type: "Kinematic", // <-- Kinematic for manual movement
+    mass: 0,
+    type: "Static",
     position: [0, 1.5, 1.5],
     args: [0.5, 0.5, 0.5],
   }));
@@ -25,10 +25,7 @@ export function Lvl2(props) {
   const [yRot, setYRot] = useState(0);
 
   useEffect(() => {
-    actions["Take 001"]?.reset().play();
-    return () => {
-      actions["Take 001"]?.fadeOut(0.5);
-    };
+    actions["Take 001"]?.play();
   }, [actions]);
 
   useFrame(({ clock }) => {

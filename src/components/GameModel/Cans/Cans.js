@@ -11,7 +11,7 @@ export function Cans({ setKnockCount }) {
 
   //For creating the Cans tower
   //first can starting point
-  var start_point = -0.4;
+  var start_point = -0.4; //x-axis
   //horizontal horizontal_difference
   const horizontal_difference = 0.25;
   //height of the first can
@@ -27,14 +27,7 @@ export function Cans({ setKnockCount }) {
   var count = 4;
   var uniqueKey = 0;
 
-  // const removeCanWithId = (id) => {
-  //   console.log(id);
-  //   if (canpositions.length != 0) {
-  //     const canpositionnew = canpositions.filter((can) => can.id !== id);
-  //     canpositions = canpositionnew;
-  //   }
-  // };
-
+  //Creating star shaped cans tower
   for (let i = count; i > 0; i--) {
     var moving_point = start_point;
 
@@ -46,7 +39,6 @@ export function Cans({ setKnockCount }) {
           canposition={position}
           unique={uniqueKey++}
           key={uniqueKey++}
-          setKnockCount={setKnockCount}
         />
       );
       moving_point += horizontal_difference;

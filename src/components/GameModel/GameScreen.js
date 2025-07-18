@@ -5,17 +5,21 @@ import { CardHolder } from "../WinCards/utils/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 import { useParams } from "wouter";
 import { useAppLocation } from "../../hooks/useAppLocation";
+import { useCanStore } from "../../store/canStore";
 
 export function GameScreen() {
   const params = useParams();
   const lvl = parseInt(params.lvl);
   const [location, setAppLocation] = useAppLocation();
   const [cardStatus, setCardStatus] = useState(false);
-  const [canKnockedCount, setCanKnockedCount] = useState(0);
+  const knockedCount = useCanStore((state) => state.knockedCount);
+  const setInitialKnockCount = useCanStore(
+    (state) => state.setInitialKnockCount
+  );
 
-  const setKnockedCount = () => {
-    setCanKnockedCount((prev) => prev + 1);
-  };
+  useEffect(() => {
+    setInitialKnockCount();
+  }, [knockedCount >= 9]);
 
   useEffect(() => {
     const handlePopState = () => setAppLocation("/lvlSelector");
@@ -24,10 +28,10 @@ export function GameScreen() {
   }, [lvl, setAppLocation]);
 
   useEffect(() => {
-    if (canKnockedCount === 9) {
+    if (knockedCount >= 9) {
       setCardStatus(true);
     }
-  }, [canKnockedCount]);
+  }, [knockedCount]);
 
   let SelectedLevel = null;
   switch (lvl) {
@@ -50,7 +54,7 @@ export function GameScreen() {
         )}
 
         {lvl !== 1 && SelectedLevel && <SelectedLevel />}
-        <BaseLevel setKnockCount={setKnockedCount} />
+        <BaseLevel />
       </Suspense>
       <CardHolder lvl={lvl} cardstatus={cardStatus} />
     </>

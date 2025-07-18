@@ -2,6 +2,7 @@ import { Html } from "@react-three/drei";
 import { Intro } from "../Intro";
 import { Skills } from "../Skills";
 import { useState } from "react";
+import { useCanStore } from "../../../store/canStore";
 
 export function CardHolder({ lvl, cardstatus }) {
   const [winCardPosition, setWinCardPosition] = useState([0, 0, 0]);
