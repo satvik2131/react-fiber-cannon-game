@@ -22,7 +22,7 @@ export const LoadingScreen = () => {
   const lvl = parseInt(params.lvl);
 
   setTimeout(() => {
-    if (lvl === 3 || lvl === 4 || lvl === 5 || lvl === 6) {
+    if (lvl === 4 || lvl === 5 || lvl === 6) {
       setAppLocation("/wip");
       return;
     }

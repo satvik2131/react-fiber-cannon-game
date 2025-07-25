@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useCylinder } from "@react-three/cannon";
-import { useCanStore } from "../../../store/canStore";
+import { useAppStore } from "../../../store/appStore";
 
 export function Can({ id, canposition, unique }) {
   const { nodes, materials } = useGLTF(`/uploads/models_3d/coke_can.glb`);
   const [visibility, setVisibility] = useState(true);
-  const incrementKnockedCount = useCanStore(
+  const incrementKnockedCount = useAppStore(
     (state) => state.incrementKnockedCount
   );
 
   var [canReference, canApi] = useCylinder(() => ({
     mass: 1,
-    args: [0.1, 0.1, 0.3],
+    args: [0.1, 0.1, 0.32],
     allowSleep: true,
     position: canposition,
     rotation: [0, -Math.PI / 2, 0],

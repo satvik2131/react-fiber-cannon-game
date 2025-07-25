@@ -1,25 +1,17 @@
 import { Suspense, useEffect, useState } from "react";
-import { Lvl2 } from "../Levels/Lvl2";
-import { BaseLevel } from "../Levels/BaseLevel";
+import { BaseLevel, Lvl2, Lvl3 } from "../Levels";
 import { CardHolder } from "../WinCards/utils/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 import { useParams } from "wouter";
 import { useAppLocation } from "../../hooks/useAppLocation";
-import { useCanStore } from "../../store/canStore";
+import { useAppStore } from "../../store/appStore";
 
 export function GameScreen() {
   const params = useParams();
   const lvl = parseInt(params.lvl);
   const [location, setAppLocation] = useAppLocation();
   const [cardStatus, setCardStatus] = useState(false);
-  const knockedCount = useCanStore((state) => state.knockedCount);
-  const setInitialKnockCount = useCanStore(
-    (state) => state.setInitialKnockCount
-  );
-
-  useEffect(() => {
-    setInitialKnockCount();
-  }, [knockedCount >= 9]);
+  const knockedCount = useAppStore((state) => state.knockedCount);
 
   useEffect(() => {
     const handlePopState = () => setAppLocation("/lvlSelector");
@@ -28,7 +20,7 @@ export function GameScreen() {
   }, [lvl, setAppLocation]);
 
   useEffect(() => {
-    if (knockedCount >= 9) {
+    if (knockedCount > 9) {
       setCardStatus(true);
     }
   }, [knockedCount]);
@@ -37,6 +29,9 @@ export function GameScreen() {
   switch (lvl) {
     case 2:
       SelectedLevel = Lvl2;
+      break;
+    case 3:
+      SelectedLevel = Lvl3;
       break;
     default:
       SelectedLevel = null;

@@ -1,9 +1,12 @@
 import { create } from "zustand";
 
-export const useCanStore = create((set) => ({
+export const useAppStore = create((set) => ({
   knockedCount: 0,
-  showWinCardStatus: false,
+  tableHandler: null,
+  tableRef: null,
   incrementKnockedCount: () =>
     set((state) => ({ knockedCount: state.knockedCount + 1 })),
   setInitialKnockCount: () => set((state) => ({ knockedCount: 0 })),
+  setTableHandler: (handler) => set({ tableHandler: handler }),
+  setTableRef: (ref) => set({ tableRef: ref }),
 }));
