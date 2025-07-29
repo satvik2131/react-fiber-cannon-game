@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useCylinder } from "@react-three/cannon";
 import { useAppStore } from "../../../store/appStore";
+import { useShallow } from "zustand/react/shallow";
 
 export function Can({ id, canposition, unique }) {
   const { nodes, materials } = useGLTF(`/uploads/models_3d/coke_can.glb`);
   const [visibility, setVisibility] = useState(true);
-  const incrementKnockedCount = useAppStore(
-    (state) => state.incrementKnockedCount
+  const { incrementKnockedCount, canMovement } = useAppStore(
+    useShallow((state) => ({
+      incrementKnockedCount: state.incrementKnockedCount,
+      canMovement: state.canMovement,
+    }))
   );
 
   var [canReference, canApi] = useCylinder(() => ({
@@ -29,6 +33,13 @@ export function Can({ id, canposition, unique }) {
       }
     },
   }));
+
+  useEffect(() => {
+    const movePos = canposition.map((pos, index) => {
+      return pos + canMovement[index];
+    });
+    canApi.position.set(...movePos);
+  }, [canMovement]);
 
   return (
     <group

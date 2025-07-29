@@ -4,9 +4,11 @@ export const useAppStore = create((set) => ({
   knockedCount: 0,
   tableHandler: null,
   tableRef: null,
+  canMovement: [0, 0, 0],
   incrementKnockedCount: () =>
     set((state) => ({ knockedCount: state.knockedCount + 1 })),
   setInitialKnockCount: () => set((state) => ({ knockedCount: 0 })),
   setTableHandler: (handler) => set({ tableHandler: handler }),
   setTableRef: (ref) => set({ tableRef: ref }),
+  setCanMovement: (value) => set({ canMovement: value }),
 }));

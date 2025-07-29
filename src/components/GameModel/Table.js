@@ -12,8 +12,12 @@ export function Table() {
     type: "Dynamic",
   }));
 
-  const setTableHandler = useAppStore((state) => state.setTableHandler);
-  const setTableRef = useAppStore((state) => state.setTableRef);
+  const { setTableHandler, setTableRef } = useAppStore(
+    useShallow((state) => ({
+      setTableHandler: state.setTableHandler,
+      setTableRef: state.setTableRef,
+    }))
+  );
   setTableHandler(tableApi);
   setTableRef(ref);
 
