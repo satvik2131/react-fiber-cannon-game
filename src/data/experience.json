@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Frontend Engineer",
+    "company": "Intangles Lab",
+    "duration": "Sep 2024 - Mar 2025",
+    "points": [
+      "Led migration from Angular.js to React.js, improving performance by 40% and modernizing UI components",
+      "Implemented Redux and Redux-Saga for state management, reducing state-related bugs by 35%",
+      "Developed REST API integrations with backend services, optimizing data fetching patterns",
+      "Integrated Single Sign-On (SSO) between Freshdesk and platform, enhancing user experience"
+    ]
+  },
+  {
+    "title": "Freelance Full-Stack Developer",
+    "company": "",
+    "duration": "Aug 2020 - Aug 2024",
+    "points": [
+      "Developed 5+ production Android applications with Firebase backend integration",
+      "Built Amazon Alexa skill using AWS Lambda and Firebase, handling 1,000+ monthly requests",
+      "Created custom backend APIs for client projects using Node.js and Express",
+      "Maintained 100% on-time delivery across 20+ projects with 4.8/5 average client rating"
+    ]
+  },
+  {
+    "title": "SDE Intern",
+    "company": "Fountane",
+    "duration": "Apr 2023 - Dec 2023",
+    "points": [
+      "Selected from 2000+ applicants through competitive interview process",
+      "Developed 3D modeling website with Three.js frontend and Node.js backend",
+      "Led proof-of-concept to migrate from Babylon.js to Three.js, reducing bundle size by 30%",
+      "Implemented backend services for 3D model processing and storage"
+    ]
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Theatron",
+    "duration": "Sep 2020 - Oct 2020",
+    "points": [
+      "Developed REST APIs with Node.js, Express, and Firebase for video streaming platform",
+      "Implemented video compression using FFMPEG module, reducing storage costs by 25%",
+      "Created Firebase-triggered backend services with Firebase Admin SDK",
+      "Worked with Firebase Cloud Functions for serverless backend operations"
+    ]
+  }
+]

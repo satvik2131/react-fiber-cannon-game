@@ -8,7 +8,7 @@ export function Homepage() {
       {/* Short Intro  */}
       <div className="flex sm:flex-col md:h-1/2 bg-slate-600">
         <div className="basis-3/5 flex sm:mr-0 sm:justify-center justify-end items-center mr-7">
-          <p className=" hollowtext font-bold drop-shadow-xl sm:text-7xl sm:p-4 md:text-8xl lg:text-9xl">
+          <p className=" hollowtext font-bold sm:text-7xl sm:p-4 md:text-8xl lg:text-9xl">
             Hi , I'm <br />
             Satvik
           </p>
@@ -33,7 +33,7 @@ export function Homepage() {
             Want to know more ?
           </p>
         </div>
-        <div className=" shadow-md rounded-lg p-4 max-w-md mx-auto">
+        <div className=" shadow-md rounded-lg mt-5 p-4 max-w-md mx-auto animate-bounce hover:animate-pulse ">
           <Link
             to={"/lvlSelector"}
             className=" text-5xl hollowtext h-14 font-bold"

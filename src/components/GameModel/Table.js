@@ -1,16 +1,25 @@
 import { useBox } from "@react-three/cannon";
-
-import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useAppStore } from "../../store/appStore";
+import { useShallow } from "zustand/react/shallow";
 
 export function Table() {
   const [ref, tableApi] = useBox(() => ({
-    mass: 10,
+    mass: 0,
     args: [1.5, 1.1, 2],
     position: [0, 0.49, 0.5],
     rotation: [-Math.PI / 2, -Math.PI / 2, -Math.PI / 2],
     type: "Dynamic",
   }));
+
+  const { setTableHandler, setTableRef } = useAppStore(
+    useShallow((state) => ({
+      setTableHandler: state.setTableHandler,
+      setTableRef: state.setTableRef,
+    }))
+  );
+  setTableHandler(tableApi);
+  setTableRef(ref);
 
   const { nodes, materials } = useGLTF(`/uploads/models_3d/table.glb`);
   return (

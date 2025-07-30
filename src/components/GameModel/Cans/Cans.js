@@ -1,61 +1,45 @@
 import { Can } from "./Can";
+import { useParams } from "wouter";
 
-export function Cans({ setKnockCount }) {
-  /*  Can Design
-   *                           }
-   **                           }
-   ****                          } --> vertical_cans
-   ******                         }
-   ******** } -> horizontal_cans   }
-   */
+export function Cans() {
+  const params = useParams();
+  const lvl = parseInt(params.lvl);
 
-  //For creating the Cans tower
-  //first can starting point
-  var start_point = -0.4;
-  //horizontal horizontal_difference
-  const horizontal_difference = 0.25;
-  //height of the first can
-  var start_height = 1.2;
-  //vertical height (how up a can should be from the first line) of a can
-  const height_difference = 0.3;
-  //Cans distance in zaxis
-  const zAxisDistance = 0.5;
+  // Cans configuration
+  const count = 4; // Number of cans at the bottom row
+  const startX = -0.4; // Starting X position
+  const horizontalGap = 0.25; // Gap between cans on X axis
+  const startY = 1.2; // Starting Y height
+  const verticalGap = 0.3; // Height difference per row
+  const z = 0.5; // Fixed Z position
 
-  var canpositions = [];
+  const canPositions = [];
 
-  //cans length of the bottom line
-  var count = 4;
-  var uniqueKey = 0;
+  let y = startY;
+  let xStart = startX;
+  let key = 0;
 
-  // const removeCanWithId = (id) => {
-  //   console.log(id);
-  //   if (canpositions.length != 0) {
-  //     const canpositionnew = canpositions.filter((can) => can.id !== id);
-  //     canpositions = canpositionnew;
-  //   }
-  // };
-
-  for (let i = count; i > 0; i--) {
-    var moving_point = start_point;
-
-    for (let j = 0; j < i; j++) {
-      var position = [moving_point, start_height, zAxisDistance];
-      canpositions.push(
+  for (let row = count; row > 0; row--) {
+    const rowPositions = Array.from({ length: row }, (_, index) => {
+      const x = xStart + index * horizontalGap;
+      return (
         <Can
-          id={j + "CC" + i}
-          canposition={position}
-          unique={uniqueKey++}
-          key={uniqueKey++}
-          setKnockCount={setKnockCount}
+          key={key++}
+          id={`${index}CC${row}`}
+          canposition={[x, y, z]}
+          unique={key++}
         />
       );
-      moving_point += horizontal_difference;
-    }
+    });
 
-    start_height += height_difference;
-    //updating the horizontal start point for the next line creation upward
-    start_point = (start_point + (start_point + horizontal_difference)) / 2;
+    canPositions.push(...rowPositions);
+
+    // Move up for next row
+    y += verticalGap;
+
+    // Recenter xStart for next row (so that cans stay centered)
+    xStart += horizontalGap / 2;
   }
 
-  return canpositions;
+  return <group key={lvl}>{canPositions}</group>;
 }

@@ -2,17 +2,28 @@ import { Link, useLocation, useParams } from "wouter";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { useAppLocation } from "../../../hooks/useAppLocation";
+import { useAppStore } from "../../../store/appStore";
+import { useShallow } from "zustand/react/shallow";
 
 export const NextLevel = ({ nextlvl, className }) => {
   const [location, setAppLocation] = useAppLocation();
+  const { setWin, setInitialKnockCount } = useAppStore(
+    useShallow((state) => ({
+      setWin: state.setWin,
+      setInitialKnockCount: state.setInitialKnockCount,
+    }))
+  );
+
   const handleClick = () => {
     setAppLocation(`/loading/${nextlvl}`, { replace: true });
+    setWin(false); // Reset win status before navigating to the next level
+    setInitialKnockCount(); // Reset knock count before navigating to the next level
   };
 
   return (
-    <a onClick={handleClick} className={className}>
+    <div onClick={handleClick} className={`${className} cursor-pointer`}>
       <TbPlayerTrackNextFilled size={50} />
-    </a>
+    </div>
   );
 };
 
@@ -22,7 +33,7 @@ export const LoadingScreen = () => {
   const lvl = parseInt(params.lvl);
 
   setTimeout(() => {
-    if (lvl === 3 || lvl === 4 || lvl === 5 || lvl === 6) {
+    if (lvl === 4 || lvl === 5 || lvl === 6) {
       setAppLocation("/wip");
       return;
     }
