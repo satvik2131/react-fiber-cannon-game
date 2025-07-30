@@ -33,7 +33,7 @@ export function Homepage() {
             Want to know more ?
           </p>
         </div>
-        <div className=" shadow-md rounded-lg p-4 max-w-md mx-auto">
+        <div className=" shadow-md rounded-lg mt-5 p-4 max-w-md mx-auto animate-bounce hover:animate-pulse ">
           <Link
             to={"/lvlSelector"}
             className=" text-5xl hollowtext h-14 font-bold"

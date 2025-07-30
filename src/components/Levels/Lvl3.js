@@ -12,16 +12,12 @@ export function Lvl3(props) {
     }))
   );
 
-  useEffect(() => {
-    console.log("canMovement", canMovement);
-  }, [canMovement]);
-
   useFrame(({ clock }) => {
     const elapsed = clock.getElapsedTime();
     // Oscillate x between -2 and +2 using sine for back-and-forth motion
     const x = 2 * Math.sin(elapsed * 2); // Adjust speed and range as needed
     setCanMovement([x, 0, -0.4]);
-    tableHandler.position.set(x, 0.57, 0);
+    tableHandler.position.set(x, 0.49, 0.5);
   });
 
   return null;

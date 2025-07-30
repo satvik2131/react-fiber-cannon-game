@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NextLevel } from "./utils/RedirectionAndLoading";
 import skills from "../../data/skills.json";
 
-export function Skills() {
+export default function Skills() {
   const [hovered, setHovered] = useState(null);
 
   return (

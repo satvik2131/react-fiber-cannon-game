@@ -3,10 +3,13 @@ import { Html } from "@react-three/drei";
 const ResetBallsButton = ({ rerender }) => {
   return (
     <Html position={[4, 2.5, 0]}>
-      <div onClick={rerender}>
+      <div
+        onClick={rerender}
+        className="cursor-pointer hover:scale-110 transition-transform"
+      >
         <svg
-          width="120px"
-          height="120px"
+          width="100px"
+          height="100px"
           viewBox="0 0 76 76"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"

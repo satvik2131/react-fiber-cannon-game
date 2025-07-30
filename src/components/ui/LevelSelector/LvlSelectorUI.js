@@ -27,20 +27,21 @@ const LevelRow = ({ rowno }) => {
   return (
     <div className="grid grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 h-4/5 w-full px-2 py-4">
       {levels.map((lvl) => (
-        <a
+        <div
           key={lvl}
           className={`
             ${color} rounded-lg 
             w-full max-w-xs mx-auto my-2
             flex flex-col items-center justify-center
             transition-all duration-200
-            hover:bg-slate-950 hover:scale-105
-            shadow-md
+            cursor-pointer
+            shadow-xl
+            hover:scale-105 hover:drop-shadow-[10px_10px_0_white]
           `}
           onClick={() => openLevel(lvl)}
         >
           <LvlCard lvl={lvl} />
-        </a>
+        </div>
       ))}
     </div>
   );

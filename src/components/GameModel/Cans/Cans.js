@@ -1,6 +1,10 @@
 import { Can } from "./Can";
+import { useParams } from "wouter";
 
-export function Cans({ setKnockCount }) {
+export function Cans() {
+  const params = useParams();
+  const lvl = parseInt(params.lvl);
+
   // Cans configuration
   const count = 4; // Number of cans at the bottom row
   const startX = -0.4; // Starting X position
@@ -37,5 +41,5 @@ export function Cans({ setKnockCount }) {
     xStart += horizontalGap / 2;
   }
 
-  return <group>{canPositions}</group>;
+  return <group key={lvl}>{canPositions}</group>;
 }

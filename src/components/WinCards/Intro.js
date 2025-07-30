@@ -2,7 +2,7 @@ import intro from "../../data/intro.json";
 import { FaTwitter, FaLinkedin, FaGithub, FaStar } from "react-icons/fa";
 import { NextLevel } from "./utils/RedirectionAndLoading";
 
-export function Intro() {
+export default function Intro() {
   return (
     <div>
       <div class="flex flex-col font-bold text-2xl mb-2 text-center text-zinc-50">

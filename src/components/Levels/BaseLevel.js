@@ -7,6 +7,7 @@ import { Wall } from "../GameModel/Wall";
 import { Table } from "../GameModel/Table";
 import { useState, useRef } from "react";
 import ResetBallsButton from "../GameModel/shared/ResetBallsButton";
+import GiveUpButton from "../GameModel/shared/GiveUpButton";
 
 export function BaseLevel({ setKnockCount }) {
   //this will rerender the balls
@@ -46,6 +47,7 @@ export function BaseLevel({ setKnockCount }) {
       <Wall position={[-5, 5, 0]} rotation={[0, Math.PI / 2, 0]} />
 
       <ResetBallsButton rerender={rerender} />
+      <GiveUpButton />
 
       <Cans />
       <Table />
