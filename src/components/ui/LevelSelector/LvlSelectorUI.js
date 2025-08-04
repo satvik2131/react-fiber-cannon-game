@@ -30,13 +30,14 @@ const LevelRow = ({ rowno }) => {
         <div
           key={lvl}
           className={`
-            ${color} rounded-lg 
+            ${color} 
             w-full max-w-xs mx-auto my-2
+            rounded-lg
             flex flex-col items-center justify-center
             transition-all duration-200
             cursor-pointer
             shadow-xl
-            hover:scale-105 hover:drop-shadow-[10px_10px_0_white]
+            hover:scale-105 hover:drop-shadow-[5px_10px_0_white]
           `}
           onClick={() => openLevel(lvl)}
         >

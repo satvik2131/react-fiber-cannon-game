@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import { Experience, Intro, Skills } from "../";
+import { Experience, Intro, Skills, Hobbies, Projects, Resume } from "../";
 import { useState } from "react";
 
 export function CardHolder({ lvl, winStatus }) {
@@ -17,8 +17,17 @@ export function CardHolder({ lvl, winStatus }) {
       case 3:
         WinCard = Experience;
         break;
+      case 4:
+        WinCard = Hobbies;
+        break;
+      case 5:
+        WinCard = Projects;
+        break;
+      case 6:
+        WinCard = Resume;
+        break;
       default:
-        WinCard = () => <div>Current Wip!</div>;
+        WinCard = () => <div>Oops!</div>;
     }
   }
 
