@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useState } from "react";
-import { BaseLevel, Lvl2, Lvl3 } from "../Levels";
+import { BaseLevel, Lvl2, Lvl3, Lvl4, Lvl5, Lvl6 } from "../Levels";
 import { CardHolder } from "../WinCards/utils/CardHolder";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 import { useParams } from "wouter";
@@ -39,6 +39,15 @@ export function GameScreen() {
     case 3:
       SelectedLevel = Lvl3;
       break;
+    case 4:
+      SelectedLevel = Lvl4;
+      break;
+    case 5:
+      SelectedLevel = Lvl5;
+      break;
+    case 6:
+      SelectedLevel = Lvl6;
+      break;
     default:
       SelectedLevel = null;
   }
@@ -50,7 +59,7 @@ export function GameScreen() {
         <ambientLight />
         {winStatus && (
           <EffectComposer>
-            <DepthOfField bokehScale={10} focalLength={0} />
+            <DepthOfField bokehScale={7} focalLength={0} />
           </EffectComposer>
         )}
 

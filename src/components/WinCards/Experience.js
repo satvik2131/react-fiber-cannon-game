@@ -23,7 +23,7 @@ export default function Experience() {
       />
       {/* Card container */}
       <div className=" w-[44rem] h-[32rem] rounded-2xl p-6 bg-opacity-0">
-        <h2 className="text-2xl font-bold text-center text-green-400 mb-4">
+        <h2 className="text-2xl font-bold text-center text-[#61dafb] mb-4">
           Professional Experience
         </h2>
         <div className="space-y-4">
@@ -36,9 +36,7 @@ export default function Experience() {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="bg-gray-900 bg-opacity-70 rounded-xl p-4 shadow hover:shadow-lg transition-shadow duration-300"
             >
-              <h3 className="text-lg font-semibold text-green-300">
-                {exp.title}
-              </h3>
+              <h3 className="text-lg font-semibold text-white">{exp.title}</h3>
               <p className="text-gray-400 text-sm mb-1">
                 {exp.company} {exp.company && "|"} {exp.duration}
               </p>

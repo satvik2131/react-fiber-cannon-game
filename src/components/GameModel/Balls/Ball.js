@@ -1,6 +1,9 @@
 import { useSphere } from "@react-three/cannon";
 import { useGesture } from "@use-gesture/react";
 import { useGLTF } from "@react-three/drei";
+import { useAppStore } from "../../../store/appStore";
+import { useEffect, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 
 export function Ball({ position }) {
   //Ball reference
@@ -10,6 +13,25 @@ export function Ball({ position }) {
     position: position,
     args: [0.18, 0.18, 0.18],
   }));
+  const windEffect = useAppStore((state) => state.windEffect);
+  const windRef = useRef([0, 0, 0]);
+  // Apply wind effect if enabled
+  useEffect(() => {
+    if (windEffect) {
+      const unsubscribe = sphereApi.position.subscribe((pos) => {
+        windRef.current = pos;
+      });
+
+      return unsubscribe;
+    }
+  }, [windEffect]);
+
+  useFrame(() => {
+    const z = windRef.current[2];
+    if (windEffect && z < 2.8 && z > 1) {
+      sphereApi.applyForce([20, 0, 0], [0, 0, 0]);
+    }
+  });
 
   const bindGestures = useGesture({
     //Swiping towards the cans

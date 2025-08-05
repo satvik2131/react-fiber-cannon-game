@@ -6,14 +6,15 @@ import { useShallow } from "zustand/react/shallow";
 //create a wrapper for useLocation to set the location
 export function useAppLocation() {
   const [location, setLocation] = useLocation();
-  const wipLevels = ["4", "5", "6"];
-  const { setWin, setInitialKnockCount, setCanMovement } = useAppStore(
-    useShallow((state) => ({
-      setWin: state.setWin,
-      setInitialKnockCount: state.setInitialKnockCount,
-      setCanMovement: state.setCanMovement,
-    }))
-  );
+  const { setWin, setInitialKnockCount, setCanMovement, setWindEffect } =
+    useAppStore(
+      useShallow((state) => ({
+        setWin: state.setWin,
+        setInitialKnockCount: state.setInitialKnockCount,
+        setCanMovement: state.setCanMovement,
+        setWindEffect: state.setWindEffect, // Assuming you have this in your store
+      }))
+    );
 
   useEffect(() => {
     const handlePopState = () => {
@@ -27,13 +28,6 @@ export function useAppLocation() {
 
   const setAppLocation = (newLocation, options) => {
     const currentLvl = parseInt(newLocation.split("/")[2]);
-    if (wipLevels.includes(currentLvl)) {
-      setLocation("/wip");
-      return;
-    }
-    if (currentLvl !== 3) {
-      setCanMovement([0, 0, 0]);
-    }
     setLocation(newLocation, options);
   };
   return [location, setAppLocation];
