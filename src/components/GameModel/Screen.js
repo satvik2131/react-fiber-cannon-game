@@ -9,9 +9,9 @@ export const Screen = () => {
       <Canvas camera={{ position: [0, 1, 4] }} shadows>
         <ambientLight intensity={0.08} />
         <Physics gravity={[0, -9.81, 0]} allowSleep={true}>
-          <Debug>
-            <GameScreen />
-          </Debug>
+          {/* <Debug> */}
+          <GameScreen />
+          {/* </Debug> */}
         </Physics>
       </Canvas>
       <Loader />
