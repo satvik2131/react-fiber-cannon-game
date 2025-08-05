@@ -10,8 +10,12 @@ export function Lvl4() {
       setWindEffect: state.setWindEffect,
     }))
   );
-
-  setWindEffect(true); // Enable wind effect for this level
+  useEffect(() => {
+    setWindEffect(true); // Enable wind effect for this level
+    return () => {
+      setWindEffect(false); // Disable wind effect when leaving the level
+    };
+  }, []);
 
   return null;
 }

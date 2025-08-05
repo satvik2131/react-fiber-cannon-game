@@ -20,7 +20,6 @@ export function useAppLocation() {
   useEffect(() => {
     const handlePopState = () => {
       setWin(false); // resets win status
-      setWindEffect(false); // resets wind effect
       setInitialKnockCount(); // resets knock count
       setLocation("/lvlSelector");
     };

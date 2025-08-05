@@ -7,7 +7,7 @@ export default function Skills() {
 
   return (
     <section className="w-full max-w-2xl mx-auto p-4 sm:p-8 rounded-3xl ">
-      <h2 className="text-center text-3xl mb-8 tracking-wide font-extrabold text-gray-800">
+      <h2 className="text-center text-3xl mb-8 tracking-wide font-extrabold text-white">
         <span className="text-[#61dafb]">My</span> Skills
       </h2>
       <hr className="my-6 border-t border-gray-300" />
