@@ -1,3 +1,5 @@
+import { ResumeViewer } from "./ResumeViewer";
+
 export default function Resume() {
-  return <div>Resume</div>;
+  return <ResumeViewer />;
 }

@@ -6,7 +6,6 @@ import { useShallow } from "zustand/react/shallow";
 //create a wrapper for useLocation to set the location
 export function useAppLocation() {
   const [location, setLocation] = useLocation();
-  const wipLevels = ["5", "6"];
   const { setWin, setInitialKnockCount, setCanMovement, setWindEffect } =
     useAppStore(
       useShallow((state) => ({
@@ -29,13 +28,6 @@ export function useAppLocation() {
 
   const setAppLocation = (newLocation, options) => {
     const currentLvl = parseInt(newLocation.split("/")[2]);
-    if (wipLevels.includes(newLocation.split("/")[2])) {
-      setLocation("/wip");
-      return;
-    }
-    if (currentLvl !== 3) {
-      setCanMovement([0, 0, 0]);
-    }
     setLocation(newLocation, options);
   };
   return [location, setAppLocation];

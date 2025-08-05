@@ -33,12 +33,8 @@ export const LoadingScreen = () => {
   const lvl = parseInt(params.lvl);
 
   setTimeout(() => {
-    if (lvl === 5 || lvl === 6) {
-      setAppLocation("/wip");
-      return;
-    }
     setAppLocation(`/game/${lvl}`);
-  }, 1500);
+  }, 500);
 
   return (
     <div className="fixed bg-black h-screen top-0 left-0 w-full h-full flex justify-center items-center z-10">

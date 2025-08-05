@@ -1,3 +1,7 @@
+import { BirdFlying } from "./BirdFlying";
+import { useTableMoving } from "../../hooks/useTableMoving";
+
 export function Lvl5() {
-  return <div>Lvl5</div>;
+  useTableMoving();
+  return <BirdFlying />;
 }

@@ -1,9 +1,11 @@
 import { Html } from "@react-three/drei";
 import { Experience, Intro, Skills, Hobbies, Projects, Resume } from "../";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAppStore } from "../../../store/appStore";
 
 export function CardHolder({ lvl, winStatus }) {
   const [winCardPosition, setWinCardPosition] = useState([0, 0, 0]);
+  const setWin = useAppStore((state) => state.setWin);
 
   let WinCard;
   if (lvl) {
@@ -31,6 +33,10 @@ export function CardHolder({ lvl, winStatus }) {
     }
   }
 
+  const handleClose = () => {
+    setWin(false);
+  };
+
   return (
     <Html
       center
@@ -38,23 +44,30 @@ export function CardHolder({ lvl, winStatus }) {
       className={winStatus ? null : "hidden"}
     >
       <div
-        className="w-[44rem] max-w-full bg-gray-700 rounded-lg p-5 shadow-2xl overflow-y-auto"
+        className="relative w-[44rem] max-w-full bg-gray-700 rounded-lg p-5 shadow-2xl overflow-y-auto"
         style={{
           maxHeight: "80vh",
-          scrollbarWidth: "none", // Firefox
-          msOverflowStyle: "none", // IE 10+
+          overflowY: "auto",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
         }}
       >
-        <style>
-          {`
-            .w-96::-webkit-scrollbar,
-            .w-\\[28rem\\]::-webkit-scrollbar,
-            .w-\\[34rem\\]::-webkit-scrollbar {
-              display: none;
-            }
-          `}
-        </style>
-        <WinCard />
+        {/* Close Button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-gray-600 hover:bg-red-500 transition-colors duration-200 z-50"
+        >
+          <span className="text-white text-xl">&times;</span>
+        </button>
+
+        <div className="mt-6">
+          {" "}
+          {/* Add padding to prevent content hiding under close button */}
+          <WinCard />
+        </div>
       </div>
     </Html>
   );
