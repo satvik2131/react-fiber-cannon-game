@@ -1,6 +1,6 @@
 # 🕹️ 3D Portfolio Game
 
-**🌐 [Visit the Website](https://satvik2131.netlify.app/)**
+**🌐 [Visit the Website](https://satvikkush.space/)**
 
 ---
 
@@ -44,3 +44,4 @@ https://raw.githubusercontent.com/satvik2131/react-fiber-cannon-game/main/upload
 ## 🙌 Author
 
 Made with ❤️ by [Satvik Kushwaha](https://github.com/satvik2131)
+
